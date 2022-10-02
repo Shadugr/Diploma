@@ -1,0 +1,12 @@
+﻿.content {
+    background-color: white;
+    width: 75%;
+    margin: 1.5%;
+    padding: 1.5%;
+    border: 1px solid #b6b6b6;
+    border-radius: 16px;
+}
+
+.content p {
+    margin-bottom: 10px;
+}

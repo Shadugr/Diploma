@@ -1,0 +1,91 @@
+﻿.dropdown {
+	position: absolute;
+	top: 80px;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.mainnav li li {
+	color: white;
+	background-color: #0082e6;
+}
+
+	.mainnav li li:hover {
+		background-color: white;
+		color: #0082e6;
+		transition: linear 0.2s;
+	}
+
+/*First Level*/
+.subs {
+	position: relative;
+	width: 250px;
+	text-align: left;
+	padding: 4%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+	.subs  > span, .subs > a {
+		float: left;
+		height: 100%;
+		width: 95%;
+	}
+
+	.subs > a {
+		cursor: pointer;
+	}
+
+	.subs > img {
+		float: right;
+		max-width: 18px;
+		height: 100%;
+		vertical-align: middle;
+	}
+
+	.subs:hover > img {
+		filter: invert(30%) sepia(80%) saturate(2222%) hue-rotate(189deg) brightness(98%) contrast(100%);
+	}
+
+.hassubs:hover .dropdown, .hassubs .hassubs:hover .dropdown, .hassubs .hassubs .hassubs:hover .dropdown {
+	opacity: 1;
+	visibility: visible;
+}
+/*Second Level*/
+.hassubs .hassubs .dropdown .subs {
+	left: 130px;
+	width: 250px;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 4%;
+}
+
+.hassubs .hassubs .dropdown {
+	position: absolute;
+	left: 120px;
+	top: 0px;
+	opacity: 0;
+	visibility: hidden;
+}
+/*Third Level*/
+.hassubs .hassubs .hassubs .dropdown .subs {
+	left: 130px;
+	width: 250px;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 4%;
+}
+
+.hassubs .hassubs .hassubs .dropdown {
+	position: absolute;
+	left: 120px;
+	width: 250px;
+	top: 0px;
+	opacity: 0;
+	visibility: hidden;
+}
