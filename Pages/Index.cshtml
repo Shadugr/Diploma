@@ -3,6 +3,56 @@
 @{
 
 }
+    <nav>
+    <div class="webname">
+        <a asp-page="Index">
+            <img src="~/icons/fmi_logo.png" />
+            Факультет математики та інформатики
+        </a>
+    </div>
+    <ul class="mainnav" onmouseover="giveMirror()">
+        @*Site menu*@
+        <li>
+            Освітня діяльність
+            <div class="wrapper">
+                <ul>
+                    <li><a href="/">Перелік заліків</a></li>
+                    <li class="parent">
+                        <span>Заочна форма навчання</span>
+                        <img src="~/icons/next.svg" />
+                        <div class="wrapper">
+                            <ul>
+                                <li class="parent">
+                                    <span>Розклади навчання</span>
+                                    <img src="~/icons/next.svg" />
+                                    <div class="wrapper">
+                                        <ul>
+                                            <li><span>Літня сесія</span></li>
+                                            <li><span>Зимова сесія</span></li>
+                                            <li><span>Настановча сесія</span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><span>Графік навчального процесу</span></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><span>Розклад екзаменів</span></li>
+                    <li><span>Робочі навчальні плани</span></li>
+                </ul>
+            </div>
+        </li>
+        <li>Про факультет</li>
+        <li>Абітурієнту</li>
+        <li>Кафедри</li>
+        <li>Онлайн розклад</li>
+    </ul>
+    <div class="searchlog">
+        @*Site search and login*@
+        <button><img src="~/icons/search.svg" class="icon search" alt="search" /></button>
+        <button><img src="~/icons/login.svg" class="icon" alt="login" /></button>
+    </div>
+    </nav>
     <div class="content"> @*Site content*@
         <p>Запрошуємо на веб-сайт факультету математики та інформатики!</p>
         <p>Факультет математики та інформатики правонаступник фізико-математичного факультету, який нерозривно пов’язаний з початком функціонування на Ровенщині першого найстарішого вищого навчального закладу – Учительського інституту, відкритого у березні 1940 року і 75 річчя якого було у 2015 році. Інститут мав три факультети – історичний, фізико-математичний і мовно-літературний. Навчальні плани і програми були розраховані на підготовку протягом двох років учителів для нової радянської школи. У зв’язку з Великою Вітчизняною війною навчання в інституті було перервано.</p>
@@ -27,4 +77,6 @@
     <footer> @*Site footer*@
 
     </footer>
+    <script src="~/js/dropdown.js"></script>
+    <script src="~/js/out_of_screen.js"></script>
 
