@@ -1,0 +1,11 @@
+﻿footer {
+    background-color: #0082e6;
+    color: white;
+    display: flex;
+    box-sizing: border-box;
+    padding-left: 2%;
+    padding-right: 2%;
+    flex-direction: row;
+    align-items: center;
+    height: 70px;
+}

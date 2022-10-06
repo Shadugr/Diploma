@@ -1,12 +1,54 @@
-﻿.content {
+﻿main {
     background-color: white;
-    width: 75%;
+    max-width: 70%;
     margin: 1.5%;
     padding: 1.5%;
     border: 1px solid #b6b6b6;
     border-radius: 16px;
+    font-size: 17px;
 }
 
-.content p {
-    margin-bottom: 10px;
+main p, main span {
+    margin: 0 1% 1% 1%;
+}
+
+main img {
+    display: block;
+    margin: 1% auto;
+}
+
+main h1 {
+    font-size: 35px;
+}
+
+main h2 {
+    font-size: 30px;
+}
+
+main b {
+    font-weight: bold;
+}
+
+main i {
+    font-style: italic;
+}
+
+main a {
+    cursor: pointer;
+    color: darkblue;
+    border-bottom: 1px solid none;
+}
+
+main a:hover {
+    border-bottom: 1px solid darkblue;
+}
+
+main ul > li {
+    margin: 0% 0% 1% 2%;
+    list-style-type: circle;
+}
+
+main ol > li {
+    margin: 0% 0% 1% 2%;
+    list-style-type: decimal;
 }

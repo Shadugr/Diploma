@@ -16,20 +16,20 @@
 	display: none;
 }
 
-	.mainnav li:hover > .wrapper {
-		display: flex;
-		max-height: 15vw;
-	}
+.mainnav li:hover > .wrapper {
+	display: flex;
+	max-height: 15vw;
+}
 
-		.mainnav li:hover > .wrapper > ul > li:hover > .wrapper {
-			display: flex;
-			height: 100%;
-		}
+.mainnav li:hover > .wrapper > ul > li:hover > .wrapper {
+	display: flex;
+	height: 100%;
+}
 
-		.mainnav li:hover > .wrapper > ul > li > .wrapper > ul > li:hover > .wrapper {
-			display: flex;
-			height: 100%;
-		}
+.mainnav li:hover > .wrapper > ul > li > .wrapper > ul > li:hover > .wrapper {
+	display: flex;
+	height: 100%;
+}
 
 .mainnav li .wrapper li {
 	padding: 4%;
@@ -58,20 +58,20 @@
 	width: 95%;
 }
 
-	.parent > img {
-		float: right;
-		max-width: 18px;
-		height: 100%;
-		vertical-align: middle;
-		float: right;
-		transition: all 0.3s;
-		transform: rotate(180deg);
-		-ms-transform: rotate(180deg);
-		-webkit-transform: rotate(180deg);
-	}
+.parent > img {
+	float: right;
+	max-width: 18px;
+	height: 100%;
+	vertical-align: middle;
+	float: right;
+	transition: all 0.3s;
+	transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+}
 
-	.parent:hover > img {
-		transform: rotate(0deg);
-		-ms-transform: rotate(0deg);
-		-webkit-transform: rotate(0deg);
-	}
+.parent:hover > img {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+}
