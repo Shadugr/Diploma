@@ -1,14 +1,18 @@
-﻿window.addEventListener("resize", removeMirror);
+﻿if ($(window).width() >= 860) {
+	window.addEventListener("resize", removeMirror);
+}
 
 function giveMirror() {
-	var elem = document.getElementsByClassName("parent");
-	
-	for (var i = 0; i < elem.length; i++) {
-		var child = elem[i].getElementsByClassName("wrapper");
-		var isOut = isOutOfViewport(child[0]);
-		if (isOut.right) {
-			child[0].classList.add("mirror");
-        }
+	if ($(window).width() >= 860) {
+		var elem = document.getElementsByClassName("parent");
+
+		for (var i = 0; i < elem.length; i++) {
+			var child = elem[i].getElementsByClassName("wrapper");
+			var isOut = isOutOfViewport(child[0]);
+			if (isOut.right) {
+				child[0].classList.add("mirror");
+			}
+		}
     }
 }
 

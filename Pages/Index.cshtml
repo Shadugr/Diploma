@@ -3,24 +3,24 @@
 @{
 
 }
-    <nav> @*Site nav*@
+    <nav>
     <div class="webname">
         <a asp-page="Index">
-            <img src="~/icons/fmi_logo.png" />
-            Факультет математики та інформатики
+            <img src="~/icons/fmi_logo.png" alt="fmi_logo" />
+            <span>Факультет математики та інформатики</span>
         </a>
     </div>
-    <ul class="mainnav" onmouseover="giveMirror()">
-        @*Site menu*@
-        <li>
-            Освітня діяльність
-            <div class="wrapper">
+    <ul class="mainnav" id="menu" onmouseover="giveMirror()">
+        <li class="menuItem">
+            <span>Освітня діяльність</span>
+            <img class="mobile" src="~/icons/next.svg" />
+            <div class="wrapper nondisplay">
                 <ul>
-                    <li><a href="/">Перелік заліків</a></li>
+                    <li><span>Перелік заліків</span></li>
                     <li class="parent">
                         <span>Заочна форма навчання</span>
                         <img src="~/icons/next.svg" />
-                        <div class="wrapper">
+                        <div class="wrapper nondisplay">
                             <ul>
                                 <li class="parent">
                                     <span>Розклади навчання</span>
@@ -42,20 +42,20 @@
                 </ul>
             </div>
         </li>
-        <li>Про факультет</li>
-        <li>Абітурієнту</li>
-        <li>Кафедри</li>
-        <li>Онлайн розклад</li>
+        <li><span>Про факультет</span></li>
+        <li><span>Абітурієнту</span></li>
+        <li><span>Кафедри</span></li>
+        <li><span>Онлайн розклад</span></li>
     </ul>
     <div class="searchlog">
-        @*Site search and login*@
         <button><img src="~/icons/search.svg" class="icon search" alt="search" /></button>
         <button><img src="~/icons/login.svg" class="icon" alt="login" /></button>
+        <button><img src="~/icons/news.svg" class="icon mobile" alt="news" onclick="toggleNews()" /></button>
+        <button><img src="~/icons/menu.svg" class="icon mobile" alt="menu" onclick="toggleMenu()" /></button>
     </div>
     </nav>
     <div class="content">
         <main>
-            @*Site content*@
             <p>Запрошуємо на веб-сайт факультету математики та інформатики!</p>
             <p>Факультет математики та інформатики правонаступник фізико-математичного факультету, який нерозривно пов’язаний з початком функціонування на Ровенщині першого найстарішого вищого навчального закладу – Учительського інституту, відкритого у березні 1940 року і 75 річчя якого було у 2015 році. Інститут мав три факультети – історичний, фізико-математичний і мовно-літературний. Навчальні плани і програми були розраховані на підготовку протягом двох років учителів для нової радянської школи. У зв’язку з Великою Вітчизняною війною навчання в інституті було перервано.</p>
             <p>Відразу після визволення міста з-під фашистської окупації інститут відновив роботу. На двох факультетах стаціонарного відділення – фізико-математичному та мовно-літературному – розпочали навчання 179 студентів. Працювало тоді в інституті 17 штатних викладачів.</p>
@@ -72,9 +72,8 @@
                 <li>Математика та статистика – «Прикладна математика».</li>
             </ul>
             <p><b>Запрошую Вас приєднатися до студентської сім’ї факультету математики та інформатики!</b></p>
-        </main>
-        <aside>
-            @*Site sidebar*@
+        </main> 
+        <aside id="news">
             <div>
                 <a>
                     <img src="~/img/normal.jpg" />
@@ -108,11 +107,12 @@
                 <span class="tag">Новини</span>
                 <span class="date">10 вересня 2022</span>
             </div>
-        </aside>
+        </aside> 
     </div>
-    <footer> @*Site footer*@
-        <img src="~/icons/rshu_logo.png" />
-    </footer>
+    <footer> 
+    <a href="https://www.rshu.edu.ua"><img src="~/icons/rshu_logo.png" /></a>
+    </footer> 
     <script src="~/js/dropdown.js"></script>
     <script src="~/js/out_of_screen.js"></script>
+    <script src="~/js/mobile_menu.js"></script>
 

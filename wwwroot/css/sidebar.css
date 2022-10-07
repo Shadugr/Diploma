@@ -1,30 +1,16 @@
 ﻿.content {
     display: flex;
 }
-
-aside {
-    background-color: white;
-    width: 30%;
-    margin: 1.5% 1.5% 1.5% 0;
-    padding: 1.5%;
-    border: 1px solid #b6b6b6;
-    border-radius: 16px;
-    float: right;
-    font-size: 17px;
-}
-
 aside > div {
     max-height: 100%;
     margin-bottom: 10%;
     display: block;
 }
-
 aside > div > a > img {
     max-height: 200px;    
     display: block;
     margin: 2% auto;
 }
-
 aside > div > a {
     display: block;
     font-weight: bold;
@@ -36,16 +22,46 @@ aside .text {
     display: block;
     margin-bottom: 4%;
 }
-
 aside .tag {
     color: white;
     background-color: green;
     padding: 2%;
+    border-radius: 5px;
 }
-
 aside .date {
     margin-top: 4%;
     display: block;
     font-size: 20px;
     color: gray;
+}
+@media only screen and (max-width: 939px) {
+aside {
+    display: none;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    max-height: 90%;
+    padding: 1.5%;
+    border: 1px solid #b6b6b6;
+    border-radius: 16px;
+    float: right;
+    font-size: 17px;
+    z-index: 0;
+    overflow-y: auto;
+}
+.content .toggle {
+    display: block !important;
+}
+}
+@media only screen and (min-width: 940px) {
+aside {
+    background-color: white;
+    width: 30%;
+    margin: 1.5% 1.5% 1.5% 0;
+    padding: 1.5%;
+    border: 1px solid #b6b6b6;
+    border-radius: 16px;
+    float: right;
+    font-size: 17px;
+}
 }

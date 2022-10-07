@@ -1,4 +1,45 @@
-﻿.mainnav ul {
+﻿@media only screen and (max-width: 939px) {
+.mainnav li {
+	background-color: #0082e6;
+}
+
+.mainnav li > .wrapper {
+	top: 80px;
+	z-index: 10;
+	width: 100%;
+	margin-top: 5%;
+	display: none;
+}
+.wrapper > ul {
+	width: 100%;
+}
+
+.display {
+	display: block !important;
+}
+
+.mainnav li .wrapper li {
+	padding: 2% 0;
+}
+
+.parent {
+	align-items: center;
+	justify-content: center;
+}
+
+.parent > span, .parent > a {
+	height: 100%;
+}
+
+.parent > img {
+	max-width: 18px;
+	height: 100%;
+	vertical-align: middle;
+	transition: linear all 0.2s;
+}
+}
+@media only screen and (min-width: 940px) {
+.mainnav ul {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
@@ -74,4 +115,5 @@
 	transform: rotate(0deg);
 	-ms-transform: rotate(0deg);
 	-webkit-transform: rotate(0deg);
+}
 }

@@ -1,4 +1,48 @@
-﻿main {
+﻿main p, main span {
+    margin: 0 1% 1% 1%;
+}
+main img {
+    display: block;
+    margin: 1% auto;
+}
+main h1 {
+    font-size: 35px;
+}
+main h2 {
+    font-size: 30px;
+}
+main b {
+    font-weight: bold;
+}
+main i {
+    font-style: italic;
+}
+main a {
+    cursor: pointer;
+    color: darkblue;
+    border-bottom: 1px solid none;
+}
+@media only screen and (max-width: 939px) {
+main {
+    background-color: white;
+    width: 100%;
+    margin: 1.5% 0;
+    padding: 1.5% 0;
+    border: 1px solid #b6b6b6;
+    border-radius: 16px;
+    font-size: 17px;
+}
+main ul > li {
+    margin: 0% 0% 1% 6%;
+    list-style-type: circle;
+}
+main ol > li {
+    margin: 0% 0% 1% 4%;
+    list-style-type: decimal;
+}
+}
+@media only screen and (min-width: 940px) {
+main {
     background-color: white;
     max-width: 70%;
     margin: 1.5%;
@@ -7,48 +51,15 @@
     border-radius: 16px;
     font-size: 17px;
 }
-
-main p, main span {
-    margin: 0 1% 1% 1%;
-}
-
-main img {
-    display: block;
-    margin: 1% auto;
-}
-
-main h1 {
-    font-size: 35px;
-}
-
-main h2 {
-    font-size: 30px;
-}
-
-main b {
-    font-weight: bold;
-}
-
-main i {
-    font-style: italic;
-}
-
-main a {
-    cursor: pointer;
-    color: darkblue;
-    border-bottom: 1px solid none;
-}
-
-main a:hover {
-    border-bottom: 1px solid darkblue;
-}
-
 main ul > li {
     margin: 0% 0% 1% 2%;
     list-style-type: circle;
 }
-
 main ol > li {
     margin: 0% 0% 1% 2%;
     list-style-type: decimal;
+}
+main a:hover {
+    border-bottom: 1px solid darkblue;
+}
 }
