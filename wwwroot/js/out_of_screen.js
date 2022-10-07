@@ -1,9 +1,9 @@
-﻿if ($(window).width() >= 860) {
+﻿if ($(window).width() >= 940) {
 	window.addEventListener("resize", removeMirror);
 }
 
 function giveMirror() {
-	if ($(window).width() >= 860) {
+	if ($(window).width() >= 940) {
 		var elem = document.getElementsByClassName("parent");
 
 		for (var i = 0; i < elem.length; i++) {

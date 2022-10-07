@@ -8,7 +8,7 @@ function toggleNews() {
     elem.classList.toggle("toggle");
 }
 
-if ($(window).width() < 860) {
+if ($(window).width() < 940) {
     $(document).click(function (event) {
         if ($(event.target).hasClass("parent") || $(event.target).hasClass("menuItem")) {
             $(event.target).find('img').first().toggleClass('clicked');

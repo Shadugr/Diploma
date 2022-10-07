@@ -1,4 +1,4 @@
-﻿if ($(window).width() >= 860) {
+﻿if ($(window).width() >= 940) {
     $(function () {
         $('li.parent').on('mouseover', function () {
             var $menuItem = $(this),
