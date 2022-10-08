@@ -7,7 +7,7 @@ aside > div {
     display: block;
 }
 aside > div > a > img {
-    max-height: 200px;    
+    max-height: 200px;
     display: block;
     margin: 2% auto;
 }
