@@ -1,0 +1,55 @@
+﻿@model FMI_web.Pages.Shared._HeaderModel
+@{
+}
+
+<nav>
+    <div class="webname">
+        <a asp-page="Index">
+            <img src="~/icons/fmi_logo.png" alt="fmi_logo" />
+            <span>Факультет математики та інформатики</span>
+        </a>
+    </div>
+    <ul class="mainnav" id="menu" onmouseover="giveMirror()">
+        <li class="menuItem">
+            <span>Освітня діяльність</span>
+            <img class="mobile" src="~/icons/next.svg" />
+            <div class="wrapper nondisplay">
+                <ul>
+                    <li><span>Перелік заліків</span></li>
+                    <li class="parent">
+                        <span>Заочна форма навчання</span>
+                        <img src="~/icons/next.svg" />
+                        <div class="wrapper nondisplay">
+                            <ul>
+                                <li class="parent">
+                                    <span>Розклади навчання</span>
+                                    <img src="~/icons/next.svg" />
+                                    <div class="wrapper">
+                                        <ul>
+                                            <li><span>Літня сесія</span></li>
+                                            <li><span>Зимова сесія</span></li>
+                                            <li><span>Настановча сесія</span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><span>Графік навчального процесу</span></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><span>Розклад екзаменів</span></li>
+                    <li><span>Робочі навчальні плани</span></li>
+                </ul>
+            </div>
+        </li>
+        <li><span>Про факультет</span></li>
+        <li><span>Абітурієнту</span></li>
+        <li><span>Кафедри</span></li>
+        <li><span>Онлайн розклад</span></li>
+    </ul>
+    <div class="searchlog">
+        <button><img src="~/icons/search.svg" class="icon search" alt="search" /></button>
+        <button><img src="~/icons/login.svg" class="icon" alt="login" /></button>
+        <button><img src="~/icons/news.svg" class="icon mobile" alt="news" onclick="toggleNews()" /></button>
+        <button><img src="~/icons/menu.svg" class="icon mobile" alt="menu" onclick="toggleMenu()" /></button>
+    </div>
+</nav>
