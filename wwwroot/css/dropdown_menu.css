@@ -1,8 +1,11 @@
-﻿@media only screen and (max-width: 939px) {
+﻿li > a {
+	display: flex;
+	justify-content: center;
+}
+@media only screen and (max-width: 939px) {
 .mainnav li {
 	background-color: #0082e6;
 }
-
 .mainnav li > .wrapper {
 	top: 80px;
 	z-index: 10;
@@ -13,24 +16,19 @@
 .wrapper > ul {
 	width: 100%;
 }
-
 .display {
 	display: block !important;
 }
-
 .mainnav li .wrapper li {
 	padding: 2% 0;
 }
-
 .parent {
 	align-items: center;
 	justify-content: center;
 }
-
 .parent > span, .parent > a {
 	height: 100%;
 }
-
 .parent > img {
 	max-width: 18px;
 	height: 100%;
@@ -43,62 +41,51 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-
 .mainnav li {
 	position: static;
 	background-color: #0082e6;
 	cursor: default;
 }
-
 .mainnav li > .wrapper {
 	position: absolute;
 	top: 80px;
 	z-index: 10;
 	display: none;
 }
-
 .mainnav li:hover > .wrapper {
 	display: flex;
 	max-height: 15vw;
 }
-
-.mainnav li:hover > .wrapper > ul > li:hover > .wrapper {
+.mainnav li > .wrapper > ul > li:hover > .wrapper {
 	display: flex;
 	height: 100%;
 }
-
-.mainnav li:hover > .wrapper > ul > li > .wrapper > ul > li:hover > .wrapper {
+.mainnav li > .wrapper > ul > li > .wrapper > ul > li:hover > .wrapper {
 	display: flex;
 	height: 100%;
 }
-
 .mainnav li .wrapper li {
 	padding: 4%;
 	width: 200px;
 }
-
 .mainnav li .wrapper li:hover
 {
 	background-color: #3e9be2;
 	transition: linear 0.2s;
 }
-
 .mirror {
 	margin-left: -401px;
 }
-
 .parent {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
-
 .parent > span, .parent > a {
 	float: left;
 	height: 100%;
 	width: 95%;
 }
-
 .parent > img {
 	float: right;
 	max-width: 18px;
@@ -110,7 +97,6 @@
 	-ms-transform: rotate(180deg);
 	-webkit-transform: rotate(180deg);
 }
-
 .parent:hover > img {
 	transform: rotate(0deg);
 	-ms-transform: rotate(0deg);
