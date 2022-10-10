@@ -1,7 +1,4 @@
-﻿main {
-    line-height: 21px;
-}
-main p, main span {
+﻿main p, main span {
     margin: 0 1% 1% 1%;
 }
 main img {
@@ -10,9 +7,11 @@ main img {
 }
 main h1 {
     font-size: 35px;
+    margin-bottom: 2%;
 }
 main h2 {
     font-size: 30px;
+    margin-bottom: 1.5%;
 }
 main b {
     font-weight: bold;
@@ -30,10 +29,12 @@ main {
     background-color: white;
     width: 100%;
     margin: 1.5% 0;
-    padding: 1.5% 0;
+    padding: 4% 2%;
     border: 1px solid #b6b6b6;
     border-radius: 16px;
     font-size: 17px;
+    min-height: 750px;
+    line-height: 30px;
 }
 main ul > li {
     margin: 0% 0% 1% 6%;
@@ -47,12 +48,13 @@ main ol > li {
 @media only screen and (min-width: 940px) {
 main {
     background-color: white;
-    max-width: 70%;
+    min-width: 70%;
     margin: 1.5%;
     padding: 1.5%;
     border: 1px solid #b6b6b6;
     border-radius: 16px;
     font-size: 17px;
+    line-height: 21px;
 }
 main ul > li {
     margin: 0% 0% 1% 2%;

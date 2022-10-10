@@ -33,7 +33,10 @@
 	max-width: 18px;
 	height: 100%;
 	vertical-align: middle;
-	transition: linear all 0.2s;
+	-webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+    -o-transition: linear all 0.2s;
+    transition: linear all 0.2s;
 }
 }
 @media only screen and (min-width: 940px) {
@@ -71,7 +74,10 @@
 .mainnav li .wrapper li:hover
 {
 	background-color: #3e9be2;
-	transition: linear 0.2s;
+	-webkit-transition: linear background-color 0.2s;
+    -moz-transition: linear background-color 0.2s;
+    -o-transition: linear background-color 0.2s;
+    transition: linear background-color 0.2s;
 }
 .mirror {
 	margin-left: -401px;
@@ -92,7 +98,10 @@
 	height: 100%;
 	vertical-align: middle;
 	float: right;
-	transition: all 0.3s;
+	-webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+    -o-transition: linear all 0.2s;
+    transition: linear all 0.2s;
 	transform: rotate(180deg);
 	-ms-transform: rotate(180deg);
 	-webkit-transform: rotate(180deg);

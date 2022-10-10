@@ -3,6 +3,19 @@
     padding-top: 81px;
     font-family: 'Ubuntu', sans-serif;
 }
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 nav {
     background-color: #0082e6;
     color: white;
@@ -87,6 +100,9 @@ li > .mobile {
     height: 100%;
     max-width: 18px;
     vertical-align: middle;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+    -o-transition: linear all 0.2s;
     transition: linear all 0.2s;
 }
 li > img {
@@ -96,6 +112,9 @@ li > img {
     transform: rotate(90deg);
 	-ms-transform: rotate(90deg);
 	-webkit-transform: rotate(90deg);
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+    -o-transition: linear all 0.2s;
     transition: linear all 0.2s;
 }
 }
@@ -116,6 +135,9 @@ nav > ul > li {
     font-size: 18px;
     border-bottom: 3px solid #0082e6;
     text-align: center;
+    -webkit-transition: linear border-bottom 0.2s;
+    -moz-transition: linear border-bottom 0.2s;
+    -o-transition: linear border-bottom 0.2s;
     transition: linear border-bottom 0.2s;
     margin-top: -1px;
 }
