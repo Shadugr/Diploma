@@ -58,6 +58,29 @@ nav {
 span {
     pointer-events: none;
 }
+menu {
+    background-color: white;
+    border: 1px solid #b6b6b6;
+    border-radius: 12px;
+    padding: 0.5% 1%;
+}
+menu form {
+    display: inline-block;
+    margin: 0.3%;
+    justify-content: center;
+}
+menu input[type=submit] {
+    color: white;
+    background-color: #0082e6;
+    padding: 0.5%;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: linear background-color 0.2s;
+    -moz-transition: linear background-color 0.2s;
+    -o-transition: linear background-color 0.2s;
+    transition: linear background-color 0.2s;
+    text-align: center;
+}
 @media only screen and (max-width: 939px) {
 nav {
     width: 101%;
@@ -158,5 +181,8 @@ nav > ul > li:hover {
 }
 .mobile {
     display: none;
+}
+menu {
+    margin: 1% 2% 0 1.5%;
 }
 }

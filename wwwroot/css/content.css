@@ -24,6 +24,45 @@ main a {
     color: darkblue;
     border-bottom: 1px solid none;
 }
+label {
+    display: block;
+}
+main input[type=text], main div, main select {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 0.2% 1%;
+    margin-bottom: 2%;
+}
+main input[type=submit] {
+    color: white;
+    background-color: #0082e6;
+    padding: 1%;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: linear background-color 0.2s;
+    -moz-transition: linear background-color 0.2s;
+    -o-transition: linear background-color 0.2s;
+    transition: linear background-color 0.2s;
+}
+main input[type=submit]:hover, main input[type=button]:hover {
+    background-color: #3e9be2;
+	-webkit-transition: linear background-color 0.2s;
+    -moz-transition: linear background-color 0.2s;
+    -o-transition: linear background-color 0.2s;
+    transition: linear background-color 0.2s;
+}
+main input[type=button] {
+    color: white;
+    background-color: #0082e6;
+    padding: 0.5%;
+    margin-bottom: 1%;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: linear background-color 0.2s;
+    -moz-transition: linear background-color 0.2s;
+    -o-transition: linear background-color 0.2s;
+    transition: linear background-color 0.2s;
+}
 @media only screen and (max-width: 939px) {
 main {
     background-color: white;
@@ -48,7 +87,7 @@ main ol > li {
 @media only screen and (min-width: 940px) {
 main {
     background-color: white;
-    min-width: 70%;
+    width: 70%;
     margin: 1.5%;
     padding: 1.5%;
     border: 1px solid #b6b6b6;

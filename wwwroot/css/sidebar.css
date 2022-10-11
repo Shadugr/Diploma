@@ -56,7 +56,8 @@ aside {
 @media only screen and (min-width: 940px) {
 aside {
     background-color: white;
-    width: 30%;
+    width: 25%;
+    height: 100%;
     margin: 1.5% 1.5% 1.5% 0;
     padding: 1.5%;
     border: 1px solid #b6b6b6;
