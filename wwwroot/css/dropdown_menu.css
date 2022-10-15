@@ -1,6 +1,16 @@
-﻿li > a {
-	display: flex;
-	justify-content: center;
+﻿.editPage {
+	background: url('../icons/page_edit.svg') no-repeat top left;
+	background-size: 20px;
+	width: 20px;
+	vertical-align: middle;
+	
+}
+li > a {
+	display: inline;
+}
+.editForm {
+	display: inline;
+	float: left;
 }
 @media only screen and (max-width: 939px) {
 .mainnav li {

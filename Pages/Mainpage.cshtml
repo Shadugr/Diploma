@@ -1,0 +1,18 @@
+﻿@page "{id?}"
+@model FMI_web.Pages.MainpageModel
+
+<main>
+@{
+    if (@Hashtables.MainPages.ContainsKey(Model.Id ?? "") && Hashtables.MainPages[Model.Id ?? ""]["Type"] == "page")
+    {
+        ViewData["PageName"] = Hashtables.MainPages[Model.Id ?? ""]["Name"];
+        <h1>@Hashtables.MainPages[Model.Id ?? ""]["Name"]</h1>
+        @Html.Raw(Hashtables.MainPages[Model.Id ?? ""]["Content"])
+    }
+    else
+    {
+        ViewData["PageName"] = "Помилка";
+        <partial name="_Error" />
+    }
+}
+</main>

@@ -1,0 +1,127 @@
+﻿@page
+@model FMI_web.Pages.MaineditorModel
+
+<main>
+    @{
+        switch (Model.TypeOfEdit)
+        {
+            case "add":
+                ViewData["PageName"] = "Створити сторінку";
+                <form asp-page-handler="add" onsubmit="return getContent()">
+                    <label asp-for="PageType">Тип сторінки:</label>
+                    <select asp-for="PageType" id="selectType" onchange="changeSelect()" required>
+                        <option value="page" selected>Сторінка</option>
+                        <option value="link">Посилання</option>
+                        <option value="list">Список</option>
+                    </select>
+                    <label asp-for="PageName">Назва сторінки:</label>
+                    <input type="text" asp-for="PageName" required />
+                    <div id="contentEditor" class="contentEditor">
+                        <label>Контент сторінки:</label>
+                        <button type="button" id="boldButton">Жирний</button>
+                        <button type="button" id="italicButton">Курсив</button>
+                        <button type="button" id="underlineButton">Підкреслений</button>
+                        <button type="button" id="ulButton">Невпорядкований список</button>
+                        <button type="button" id="olButton">Нумерований список</button>
+                        <button type="button" onclick="toggleLinkAdd()">Посилання</button>
+                        <button type="button">Картинка</button>
+                        <div class="hidden" id="linkAdd">
+                            <label for="linkAddInput">Посилання на сторінку:</label>
+                            <input type="text" id="linkAddInput" />
+                            <button type="button" id="linkAddButton">Додати посилання</button>
+                        </div>
+                        <div contenteditable="true" id="editorPageEditor"></div>
+                    </div>
+                    <div id="pageContentLink" class="contentEditor hidden">
+                        <label asp-for="PageContentLink">Посилання на сторінку:</label>
+                        <input type="text" asp-for="PageContentLink" />
+                    </div>
+                    <textarea asp-for="PageContent" id="editorPageContent" style="display:none"></textarea>
+                    <input type="hidden" asp-for="TypeOfEdit" value="@Model.TypeOfEdit" />
+                    <input type="hidden" asp-for="Parent" value="@Model.Parent" />
+                    <span id="errorMessage">@Model.ErrorMessage</span>
+                    <input type="submit" value="Створити" />
+                </form>
+                break;
+            case string check when (check == "edit" && Hashtables.MainPages.ContainsKey(Model.FullPageName ?? "")):
+                ViewData["PageName"] = "Редагувати сторінку";
+                <form asp-page-handler="remove">
+                    <input type="hidden" asp-for="FullPageName" value="@Model.FullPageName" />
+                    <label>Видалити сторінку:</label>
+                    <input type="submit" value="Видалити" />
+                </form>
+                <form asp-page-handler="edit" onsubmit="return getContent()">
+                    <label asp-for="PageType">Тип сторінки:</label>
+                    <select asp-for="PageType" id="selectType" onchange="changeSelect()" required>
+                        @{
+                            if (Hashtables.MainPages[Model.FullPageName ?? ""]["Type"] == "link")
+                            {
+                                <option value="page">Сторінка</option>
+                                <option value="link" selected>Посилання</option>
+                                <option value="list">Список</option>
+                            }
+                            else if (Hashtables.MainPages[Model.FullPageName ?? ""]["Type"] == "list")
+                            {
+                                <option value="page">Сторінка</option>
+                                <option value="link">Посилання</option>
+                                <option value="list" selected>Список</option>
+                            }
+                            else
+                            {
+                                <option value="page" selected>Сторінка</option>
+                                <option value="link">Посилання</option>
+                                <option value="list">Список</option>
+                            }
+                        }
+                    </select>
+                    <label asp-for="PageName" onload="changeSelect()">Назва сторінки:</label>
+                    <input type="text" asp-for="PageName" value="@Hashtables.MainPages[Model.FullPageName ?? ""]["Name"]" required />
+                    <div id="contentEditor" class="contentEditor">
+                        <label>Контент сторінки:</label>
+                        <button type="button" id="boldButton">Жирний</button>
+                        <button type="button" id="italicButton">Курсив</button>
+                        <button type="button" id="underlineButton">Підкреслений</button>
+                        <button type="button" id="ulButton">Невпорядкований список</button>
+                        <button type="button" id="olButton">Нумерований список</button>
+                        <button type="button" onclick="toggleLinkAdd()">Посилання</button>
+                        <button type="button">Картинка</button>
+                        <div class="hidden" id="linkAdd">
+                            <label for="linkAddInput">Посилання на сторінку:</label>
+                            <input type="text" id="linkAddInput" />
+                            <button type="button" id="linkAddButton">Додати посилання</button>
+                        </div>
+                        <div contenteditable="true" id="editorPageEditor">
+                            @{
+                                if (@Hashtables.MainPages[Model.FullPageName ?? ""]["Type"] == "page")
+                                    @Html.Raw(Hashtables.MainPages[Model.FullPageName ?? ""]["Content"])
+                            }
+                        </div>
+                    </div>
+                    <div id="pageContentLink" class="contentEditor hidden">
+                        <label asp-for="PageContentLink">Посилання на сторінку:</label>
+                        @{
+                            if (@Hashtables.MainPages[Model.FullPageName ?? ""]["Type"] == "link")
+                            {
+                                <input type="text" asp-for="PageContentLink" value="@Hashtables.MainPages[Model.FullPageName ?? ""]["Content"]" />
+                            }
+                            else
+                            {
+                                <input type="text" asp-for="PageContentLink" />
+                            }
+                        }
+                    </div>
+                    <textarea asp-for="PageContent" id="editorPageContent" style="display:none"></textarea>
+                    <input type="hidden" asp-for="TypeOfEdit" value="@Model.TypeOfEdit" />
+                    <input type="hidden" asp-for="FullPageName" value="@Model.FullPageName" />
+                    <span id="errorMessage">@Model.ErrorMessage</span>
+                    <input type="submit" value="Змінити" />
+                </form>
+                break;
+            default:
+                ViewData["PageName"] = "Помилка";
+                <partial name="_Error" />
+                break;
+        }
+    }
+</main>
+<script src="~/js/form.js"></script>
