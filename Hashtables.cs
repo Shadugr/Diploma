@@ -1,13 +1,27 @@
-﻿using System.Collections;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace FMI_web
 {
     public static class Hashtables
     {
-        static string Path { get; } = @"~/tables";
-        public static Dictionary<string, Dictionary<string, string>> MainPages { get; set; } = new Dictionary<string, Dictionary<string, string>>();
+        public static Dictionary<string, Dictionary<string, string>> MainPages { get; set; }
+            = FileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
+
+        public static void HashtableToFile(Dictionary<string, Dictionary<string, string>> table, string path)
+        {
+            string json = JsonConvert.SerializeObject(table);
+            File.WriteAllText(path, json);
+        }
+        public static Dictionary<string, Dictionary<string, string>> FileToHashtable(string path)
+        {
+            if (!File.Exists(path))
+                File.Create(path);
+            var file = new FileInfo(path);
+            if (file.Length == 0)
+                return new Dictionary<string, Dictionary<string, string>>();
+            return JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>
+                (File.ReadAllText(path)) ?? new Dictionary<string, Dictionary<string, string>>();
+        }
 
         public static string ConvertToLatin(string source)
         {
@@ -53,6 +67,11 @@ namespace FMI_web
             result = result.Replace("ы", "i");
             result = result.Replace("э", "ye");
             return result;
+        }
+        public static void FirstStart()
+        {
+            if (!Directory.Exists(Defs.FILE_HASHTABLESDIRECTORY))
+                Directory.CreateDirectory(Defs.FILE_HASHTABLESDIRECTORY);
         }
     }
 }

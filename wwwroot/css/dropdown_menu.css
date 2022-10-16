@@ -10,7 +10,6 @@ li > a {
 }
 .editForm {
 	display: inline;
-	float: left;
 }
 @media only screen and (max-width: 939px) {
 .mainnav li {
@@ -120,5 +119,8 @@ li > a {
 	transform: rotate(0deg);
 	-ms-transform: rotate(0deg);
 	-webkit-transform: rotate(0deg);
+}
+.editForm {
+	float: left;
 }
 }

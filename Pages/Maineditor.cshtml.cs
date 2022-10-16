@@ -78,6 +78,8 @@ namespace FMI_web.Pages
                     return RedirectToPage("Index");
             }
             Hashtables.MainPages.Add(fullPage, temp);
+            Hashtables.HashtableToFile(Hashtables.MainPages,
+                Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
             if (PageType == Defs.TYPE_PAGE)
                 return Redirect($"Mainpage/{fullPage}");
             return RedirectToPage("Index");
@@ -143,6 +145,8 @@ namespace FMI_web.Pages
                         return RedirectToPage("Index");
                 }
                 Hashtables.MainPages.Add(newFullPage, temp);
+                Hashtables.HashtableToFile(Hashtables.MainPages,
+                Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
                 if (PageType == Defs.TYPE_PAGE)
                     return Redirect($"Mainpage/{newFullPage}");
                 return RedirectToPage("Index");
@@ -178,6 +182,8 @@ namespace FMI_web.Pages
                 default:
                     return null;
             }
+            Hashtables.HashtableToFile(Hashtables.MainPages,
+                Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
             if (PageType == Defs.TYPE_PAGE)
                 return Redirect($"Mainpage/{fullPage}");
             return RedirectToPage("Index");
@@ -188,6 +194,8 @@ namespace FMI_web.Pages
             {
                 Hashtables.MainPages.Remove(FullPageName);
             }
+            Hashtables.HashtableToFile(Hashtables.MainPages,
+                Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
             return RedirectToPage("Index");
         }
     }

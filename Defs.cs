@@ -2,6 +2,7 @@
 {
     public static class Defs
     {
+        #region defenitions
         //Page classes
         public const string CLASS_MAIN = "main";
         public const string CLASS_STATIC = "static";
@@ -28,5 +29,9 @@
         public const string MENU_ONL_R = "onlayn_rozklad";
         //View Data
         public const string VIEWDATA_PAGENAME = "PageName";
+        //File path
+        public const string FILE_HASHTABLESDIRECTORY = @"wwwroot/hashtables";
+        public const string FILE_MAINHASHTABLE = nameof(Hashtables.MainPages) + ".json";
+        #endregion
     }
 }

@@ -14,15 +14,25 @@
             <span>Освітня діяльність</span>
             <img class="mobile" src="~/icons/next.svg" />
             <div class="wrapper nondisplay">
-                <ul>
-                    @Model.GenerateMenuMain(Defs.MENU_OSV_D)
-                </ul>
+                <ul>@Model.GenerateMenuMain(Defs.MENU_OSV_D)</ul>
             </div>
         </li>
-        <li><span>Про факультет</span></li>
+        <li class="menuItem">
+            <span>Про факультет</span>
+            <img class="mobile" src="~/icons/next.svg" />
+            <div class="wrapper nondisplay">
+                <ul>@Model.GenerateMenuMain(Defs.MENU_PRO_F)</ul>
+            </div>
+        </li>
         <li><span>Абітурієнту</span></li>
         <li><span>Кафедри</span></li>
-        <li><span>Онлайн розклад</span></li>
+        <li class="menuItem">
+            <span>Онлайн розклад</span>
+            <img class="mobile" src="~/icons/next.svg" />
+            <div class="wrapper nondisplay">
+                <ul>@Model.GenerateMenuMain(Defs.MENU_ONL_R)</ul>
+            </div>
+        </li>
     </ul>
     <div class="searchlog">
         <button><img src="~/icons/search.svg" class="icon search" alt="search" /></button>

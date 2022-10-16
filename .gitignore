@@ -521,6 +521,9 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
+# Hashtables igrone
+hashtables
+
 # JetBrains Rider
 
 ### VisualStudio Patch ###
