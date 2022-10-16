@@ -54,13 +54,13 @@
                     <label asp-for="PageType">Тип сторінки:</label>
                     <select asp-for="PageType" id="selectType" onchange="changeSelect()" required>
                         @{
-                            if (Hashtables.MainPages[Model.FullPageName ?? ""][Defs.VALUE_TYPE] == Defs.TYPE_LINK)
+                            if (Hashtables.MainPages[Model.FullPageName ?? ""].Type == Defs.TYPE_LINK)
                             {
                                 <option value="page">Сторінка</option>
                                 <option value="link" selected>Посилання</option>
                                 <option value="list">Список</option>
                             }
-                            else if (Hashtables.MainPages[Model.FullPageName ?? ""][Defs.VALUE_TYPE] == Defs.TYPE_LIST)
+                            else if (Hashtables.MainPages[Model.FullPageName ?? ""].Type == Defs.TYPE_LIST)
                             {
                                 <option value="page">Сторінка</option>
                                 <option value="link">Посилання</option>
@@ -75,7 +75,7 @@
                         }
                     </select>
                     <label asp-for="PageName" onload="changeSelect()">Назва сторінки:</label>
-                    <input type="text" asp-for="PageName" value="@Hashtables.MainPages[Model.FullPageName ?? ""][Defs.VALUE_NAME]" required />
+                    <input type="text" asp-for="PageName" value="@Hashtables.MainPages[Model.FullPageName ?? ""].Name" required />
                     <div id="contentEditor" class="contentEditor">
                         <label>Контент сторінки:</label>
                         <button type="button" id="boldButton">Жирний</button>
@@ -92,17 +92,17 @@
                         </div>
                         <div contenteditable="true" id="editorPageEditor">
                             @{
-                                if (@Hashtables.MainPages[Model.FullPageName ?? ""][Defs.VALUE_TYPE] == Defs.TYPE_PAGE)
-                                    @Html.Raw(Hashtables.MainPages[Model.FullPageName ?? ""][Defs.VALUE_CONTENT])
+                                if (@Hashtables.MainPages[Model.FullPageName ?? ""].Type == Defs.TYPE_PAGE)
+                                    @Html.Raw(Hashtables.MainPages[Model.FullPageName ?? ""].Content)
                             }
                         </div>
                     </div>
                     <div id="pageContentLink" class="contentEditor hidden">
                         <label asp-for="PageContentLink">Посилання на сторінку:</label>
                         @{
-                            if (@Hashtables.MainPages[Model.FullPageName ?? ""][Defs.VALUE_TYPE] == Defs.TYPE_LINK)
+                            if (@Hashtables.MainPages[Model.FullPageName ?? ""].Type == Defs.TYPE_LINK)
                             {
-                                <input type="text" asp-for="PageContentLink" value="@Hashtables.MainPages[Model.FullPageName ?? ""][Defs.VALUE_CONTENT]" />
+                                <input type="text" asp-for="PageContentLink" value="@Hashtables.MainPages[Model.FullPageName ?? ""].Content" />
                             }
                             else
                             {

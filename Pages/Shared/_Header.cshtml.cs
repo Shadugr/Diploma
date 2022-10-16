@@ -10,7 +10,7 @@ namespace FMI_web.Pages.Shared
     {
         public HtmlString GenerateMenuMain(string parentName)
         {
-            StringBuilder sbMenu = new StringBuilder();
+            StringBuilder sbMenu = new();
             if (!parentName.Contains('&'))
             {
                 sbMenu.Append("<li><form method=\"post\" action=\"/Maineditor\">");
@@ -33,7 +33,7 @@ namespace FMI_web.Pages.Shared
                 }
                 if (parentName != thisParentName)
                     continue;
-                switch (item.Value[Defs.VALUE_TYPE])
+                switch (item.Value.Type)
                 {
                     case Defs.TYPE_LIST:
                         if (parents.Length >= 2)
@@ -45,7 +45,7 @@ namespace FMI_web.Pages.Shared
                             sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                             sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                             sbMenu.Append("</form>");
-                            sbMenu.Append("<span>" + item.Value[Defs.VALUE_NAME] + "</span>");
+                            sbMenu.Append("<span>" + item.Value.Name + "</span>");
                             sbMenu.Append("<img src=\"/icons/next.svg\" />");
                         }
                         sbMenu.Append("<div class=\"wrapper\">");
@@ -74,7 +74,7 @@ namespace FMI_web.Pages.Shared
                         sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                         sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                         sbMenu.Append("</form>");
-                        sbMenu.Append("<a href=\"/Mainpage/" + item.Key + "\">" + item.Value[Defs.VALUE_NAME] + "</a></li>");
+                        sbMenu.Append("<a href=\"/Mainpage/" + item.Key + "\">" + item.Value.Name + "</a></li>");
                         break;
                     case Defs.TYPE_LINK:
                         sbMenu.Append("<li>");
@@ -84,7 +84,7 @@ namespace FMI_web.Pages.Shared
                         sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                         sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                         sbMenu.Append("</form>");
-                        sbMenu.Append("<a href=/Mainpage/" + item.Value[Defs.VALUE_CONTENT] + "\">" + item.Value[Defs.VALUE_NAME] + "</a></li>");
+                        sbMenu.Append("<a href=\"" + item.Value.Content + "\">" + item.Value.Name + "</a></li>");
                         break;
                     default:
                         break;

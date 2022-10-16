@@ -3,11 +3,11 @@
 
 <main>
 @{
-    if (@Hashtables.MainPages.ContainsKey(Model.Id ?? "") && Hashtables.MainPages[Model.Id ?? ""][Defs.VALUE_TYPE] == Defs.TYPE_PAGE)
+    if (@Hashtables.MainPages.ContainsKey(Model.Id ?? "") && Hashtables.MainPages[Model.Id ?? ""].Type == Defs.TYPE_PAGE)
     {
-        ViewData[Defs.VIEWDATA_PAGENAME] = Hashtables.MainPages[Model.Id ?? ""][Defs.VALUE_NAME];
-        <h1>@Hashtables.MainPages[Model.Id ?? ""][Defs.VALUE_NAME]</h1>
-        @Html.Raw(Hashtables.MainPages[Model.Id ?? ""][Defs.VALUE_CONTENT])
+        ViewData[Defs.VIEWDATA_PAGENAME] = Hashtables.MainPages[Model.Id ?? ""].Name;
+        <h1>@Hashtables.MainPages[Model.Id ?? ""].Name</h1>
+        @Html.Raw(Hashtables.MainPages[Model.Id ?? ""].Content)
     }
     else
     {

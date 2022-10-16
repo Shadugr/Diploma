@@ -19,10 +19,6 @@
         public const string INPUT_PAGECLASS = "pageclass";
         public const string INPUT_FULLPAGENAME = "fullpagename";
         public const string INPUT_PARENT = "parent";
-        //Hashtables values
-        public const string VALUE_TYPE = "Type";
-        public const string VALUE_NAME = "Name";
-        public const string VALUE_CONTENT = "Content";
         //Menu list
         public const string MENU_OSV_D = "osvitnya_diyalnist";
         public const string MENU_PRO_F = "pro_fakultet";

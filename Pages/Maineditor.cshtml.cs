@@ -42,11 +42,7 @@ namespace FMI_web.Pages
                 ErrorMessage = "Сторінка з такою назвою вже існує!";
                 return null;
             }
-            Dictionary<string, string> temp = new()
-            {
-                { Defs.VALUE_TYPE, PageType },
-                { Defs.VALUE_NAME, PageName }
-            };
+            MainPageClass temp = new(PageName, PageType);
             switch (PageType)
             {
                 case Defs.TYPE_PAGE:
@@ -55,7 +51,7 @@ namespace FMI_web.Pages
                         ErrorMessage = "Контент сторінки порожній!";
                         return null;
                     }
-                    temp.Add(Defs.VALUE_CONTENT, PageContent);
+                    temp.Content = PageContent;
                     break;
                 case Defs.TYPE_LINK:
                     if (string.IsNullOrEmpty(PageContentLink))
@@ -63,7 +59,9 @@ namespace FMI_web.Pages
                         ErrorMessage = "Посилання на сторінку порожнє!";
                         return null;
                     }
-                    temp.Add(Defs.VALUE_CONTENT, PageContentLink);
+                    if (!PageContentLink.StartsWith("https://") && !PageContentLink.StartsWith("http://"))
+                        PageContentLink = "https://" + PageContentLink;
+                    temp.Content = PageContentLink;
                     break;
                 case Defs.TYPE_LIST:
                     string[] c = Parent.Split('&');
@@ -72,7 +70,6 @@ namespace FMI_web.Pages
                         ErrorMessage = "Максимальний рівень меню 3!";
                         return null;
                     }
-                    temp.Add(Defs.VALUE_CONTENT, "");
                     break;
                 default:
                     return RedirectToPage("Index");
@@ -109,11 +106,7 @@ namespace FMI_web.Pages
             if (newFullPage != fullPage)
             {
                 Hashtables.MainPages.Remove(fullPage);
-                Dictionary<string, string> temp = new()
-                {
-                    { Defs.VALUE_TYPE, PageType },
-                    { Defs.VALUE_NAME, PageName }
-                };
+                MainPageClass temp = new(PageName, PageType);
                 switch (PageType)
                 {
                     case Defs.TYPE_PAGE:
@@ -122,7 +115,7 @@ namespace FMI_web.Pages
                             ErrorMessage = "Контент сторінки порожній!";
                             return null;
                         }
-                        temp.Add(Defs.VALUE_CONTENT, PageContent);
+                        temp.Content = PageContent;
                         break;
                     case Defs.TYPE_LINK:
                         if (string.IsNullOrEmpty(PageContentLink))
@@ -130,7 +123,9 @@ namespace FMI_web.Pages
                             ErrorMessage = "Посилання на сторінку порожнє!";
                             return null;
                         }
-                        temp.Add(Defs.VALUE_CONTENT, PageContentLink);
+                        if (!PageContentLink.StartsWith("https://") && !PageContentLink.StartsWith("http://"))
+                            PageContentLink = "https://" + PageContentLink;
+                        temp.Content = PageContentLink;
                         break;
                     case Defs.TYPE_LIST:
                         string[] c = newFullPage.Split('&');
@@ -139,7 +134,6 @@ namespace FMI_web.Pages
                             ErrorMessage = "Максимальний рівень меню 3!";
                             return null;
                         }
-                        temp.Add(Defs.VALUE_CONTENT, "");
                         break;
                     default:
                         return RedirectToPage("Index");
@@ -151,7 +145,7 @@ namespace FMI_web.Pages
                     return Redirect($"Mainpage/{newFullPage}");
                 return RedirectToPage("Index");
             }
-            Hashtables.MainPages[fullPage][Defs.VALUE_TYPE] = PageType;
+            Hashtables.MainPages[fullPage].Type = PageType;
             switch (PageType)
             {
                 case Defs.TYPE_PAGE:
@@ -160,7 +154,7 @@ namespace FMI_web.Pages
                         ErrorMessage = "Контент сторінки порожній!";
                         return null;
                     }
-                    Hashtables.MainPages[fullPage][Defs.VALUE_CONTENT] = PageContent;
+                    Hashtables.MainPages[fullPage].Content = PageContent;
                     break;
                 case Defs.TYPE_LINK:
                     if (string.IsNullOrEmpty(PageContentLink))
@@ -168,7 +162,9 @@ namespace FMI_web.Pages
                         ErrorMessage = "Посилання на сторінку порожнє!";
                         return null;
                     }
-                    Hashtables.MainPages[fullPage][Defs.VALUE_CONTENT] = PageContentLink;
+                    if (!PageContentLink.StartsWith("https://") && !PageContentLink.StartsWith("http://"))
+                        PageContentLink = "https://" + PageContentLink;
+                    Hashtables.MainPages[fullPage].Content = PageContentLink;
                     break;
                 case Defs.TYPE_LIST:
                     string[] c = fullPage.Split('&');
@@ -177,7 +173,6 @@ namespace FMI_web.Pages
                         ErrorMessage = "Максимальний рівень меню 3!";
                         return null;
                     }
-                    Hashtables.MainPages[fullPage][Defs.VALUE_CONTENT] = "";
                     break;
                 default:
                     return null;
