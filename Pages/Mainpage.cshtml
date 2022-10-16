@@ -3,15 +3,15 @@
 
 <main>
 @{
-    if (@Hashtables.MainPages.ContainsKey(Model.Id ?? "") && Hashtables.MainPages[Model.Id ?? ""]["Type"] == "page")
+    if (@Hashtables.MainPages.ContainsKey(Model.Id ?? "") && Hashtables.MainPages[Model.Id ?? ""][Defs.VALUE_TYPE] == Defs.TYPE_PAGE)
     {
-        ViewData["PageName"] = Hashtables.MainPages[Model.Id ?? ""]["Name"];
-        <h1>@Hashtables.MainPages[Model.Id ?? ""]["Name"]</h1>
-        @Html.Raw(Hashtables.MainPages[Model.Id ?? ""]["Content"])
+        ViewData[Defs.VIEWDATA_PAGENAME] = Hashtables.MainPages[Model.Id ?? ""][Defs.VALUE_NAME];
+        <h1>@Hashtables.MainPages[Model.Id ?? ""][Defs.VALUE_NAME]</h1>
+        @Html.Raw(Hashtables.MainPages[Model.Id ?? ""][Defs.VALUE_CONTENT])
     }
     else
     {
-        ViewData["PageName"] = "Помилка";
+        ViewData[Defs.VIEWDATA_PAGENAME] = "Помилка";
         <partial name="_Error" />
     }
 }

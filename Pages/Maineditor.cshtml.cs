@@ -44,41 +44,41 @@ namespace FMI_web.Pages
             }
             Dictionary<string, string> temp = new()
             {
-                { "Type", PageType },
-                { "Name", PageName }
+                { Defs.VALUE_TYPE, PageType },
+                { Defs.VALUE_NAME, PageName }
             };
             switch (PageType)
             {
-                case "page":
+                case Defs.TYPE_PAGE:
                     if (string.IsNullOrEmpty(PageContent))
                     {
                         ErrorMessage = "Контент сторінки порожній!";
                         return null;
                     }
-                    temp.Add("Content", PageContent);
+                    temp.Add(Defs.VALUE_CONTENT, PageContent);
                     break;
-                case "link":
+                case Defs.TYPE_LINK:
                     if (string.IsNullOrEmpty(PageContentLink))
                     {
                         ErrorMessage = "Посилання на сторінку порожнє!";
                         return null;
                     }
-                    temp.Add("Content", PageContentLink);
+                    temp.Add(Defs.VALUE_CONTENT, PageContentLink);
                     break;
-                case "list":
+                case Defs.TYPE_LIST:
                     string[] c = Parent.Split('&');
                     if (c.Length >= 3)
                     {
                         ErrorMessage = "Максимальний рівень меню 3!";
                         return null;
                     }
-                    temp.Add("Content", "");
+                    temp.Add(Defs.VALUE_CONTENT, "");
                     break;
                 default:
-                    return null;
+                    return RedirectToPage("Index");
             }
             Hashtables.MainPages.Add(fullPage, temp);
-            if (PageType == "page")
+            if (PageType == Defs.TYPE_PAGE)
                 return Redirect($"Mainpage/{fullPage}");
             return RedirectToPage("Index");
         }
@@ -109,76 +109,76 @@ namespace FMI_web.Pages
                 Hashtables.MainPages.Remove(fullPage);
                 Dictionary<string, string> temp = new()
                 {
-                    { "Type", PageType },
-                    { "Name", PageName }
+                    { Defs.VALUE_TYPE, PageType },
+                    { Defs.VALUE_NAME, PageName }
                 };
                 switch (PageType)
                 {
-                    case "page":
+                    case Defs.TYPE_PAGE:
                         if (string.IsNullOrEmpty(PageContent))
                         {
                             ErrorMessage = "Контент сторінки порожній!";
                             return null;
                         }
-                        temp.Add("Content", PageContent);
+                        temp.Add(Defs.VALUE_CONTENT, PageContent);
                         break;
-                    case "link":
+                    case Defs.TYPE_LINK:
                         if (string.IsNullOrEmpty(PageContentLink))
                         {
                             ErrorMessage = "Посилання на сторінку порожнє!";
                             return null;
                         }
-                        temp.Add("Content", PageContentLink);
+                        temp.Add(Defs.VALUE_CONTENT, PageContentLink);
                         break;
-                    case "list":
+                    case Defs.TYPE_LIST:
                         string[] c = newFullPage.Split('&');
                         if (c.Length >= 4)
                         {
                             ErrorMessage = "Максимальний рівень меню 3!";
                             return null;
                         }
-                        temp.Add("Content", "");
+                        temp.Add(Defs.VALUE_CONTENT, "");
                         break;
                     default:
-                        return null;
+                        return RedirectToPage("Index");
                 }
                 Hashtables.MainPages.Add(newFullPage, temp);
+                if (PageType == Defs.TYPE_PAGE)
+                    return Redirect($"Mainpage/{newFullPage}");
+                return RedirectToPage("Index");
             }
-            else
+            Hashtables.MainPages[fullPage][Defs.VALUE_TYPE] = PageType;
+            switch (PageType)
             {
-                Hashtables.MainPages[fullPage]["Type"] = PageType;
-                switch (PageType)
-                {
-                    case "page":
-                        if (string.IsNullOrEmpty(PageContent))
-                        {
-                            ErrorMessage = "Контент сторінки порожній!";
-                            return null;
-                        }
-                        Hashtables.MainPages[fullPage]["Content"] = PageContent;
-                        break;
-                    case "link":
-                        if (string.IsNullOrEmpty(PageContentLink))
-                        {
-                            ErrorMessage = "Посилання на сторінку порожнє!";
-                            return null;
-                        }
-                        Hashtables.MainPages[fullPage]["Content"] = PageContentLink;
-                        break;
-                    case "list":
-                        string[] c = fullPage.Split('&');
-                        if (c.Length >= 4)
-                        {
-                            ErrorMessage = "Максимальний рівень меню 3!";
-                            return null;
-                        }
-                        Hashtables.MainPages[fullPage]["Content"] = "";
-                        break;
-                    default:
+                case Defs.TYPE_PAGE:
+                    if (string.IsNullOrEmpty(PageContent))
+                    {
+                        ErrorMessage = "Контент сторінки порожній!";
                         return null;
-                }
+                    }
+                    Hashtables.MainPages[fullPage][Defs.VALUE_CONTENT] = PageContent;
+                    break;
+                case Defs.TYPE_LINK:
+                    if (string.IsNullOrEmpty(PageContentLink))
+                    {
+                        ErrorMessage = "Посилання на сторінку порожнє!";
+                        return null;
+                    }
+                    Hashtables.MainPages[fullPage][Defs.VALUE_CONTENT] = PageContentLink;
+                    break;
+                case Defs.TYPE_LIST:
+                    string[] c = fullPage.Split('&');
+                    if (c.Length >= 4)
+                    {
+                        ErrorMessage = "Максимальний рівень меню 3!";
+                        return null;
+                    }
+                    Hashtables.MainPages[fullPage][Defs.VALUE_CONTENT] = "";
+                    break;
+                default:
+                    return null;
             }
-            if (PageType == "page")
+            if (PageType == Defs.TYPE_PAGE)
                 return Redirect($"Mainpage/{fullPage}");
             return RedirectToPage("Index");
         }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,9 +14,9 @@ namespace FMI_web.Pages.Shared
             if (!parentName.Contains('&'))
             {
                 sbMenu.Append("<li><form method=\"post\" action=\"/Maineditor\">");
-                sbMenu.Append("<input type=\"hidden\" name=\"typeofedit\" value=\"add\" />");
-                sbMenu.Append("<input type=\"hidden\" name=\"pageclass\" value=\"main\" />");
-                sbMenu.Append("<input type=\"hidden\" name=\"parent\" value=\"" + parentName + "\" />");
+                sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_ADD + "\" />");
+                sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
+                sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PARENT + "\" value=\"" + parentName + "\" />");
                 sbMenu.Append("<input type=\"submit\" value=\"Створити сторінку\" />");
                 sbMenu.Append("</form></li>");
             }
@@ -32,19 +33,19 @@ namespace FMI_web.Pages.Shared
                 }
                 if (parentName != thisParentName)
                     continue;
-                switch (item.Value["Type"])
+                switch (item.Value[Defs.VALUE_TYPE])
                 {
-                    case "list":
+                    case Defs.TYPE_LIST:
                         if (parents.Length >= 2)
                         {
                             sbMenu.Append("<li class=\"parent\">");
                             sbMenu.Append("<form class=\"editForm\" method=\"post\" action=\"/Maineditor\">");
-                            sbMenu.Append("<input type=\"hidden\" name=\"typeofedit\" value=\"edit\" />");
-                            sbMenu.Append("<input type=\"hidden\" name=\"pageclass\" value=\"main\" />");
-                            sbMenu.Append("<input type=\"hidden\" name=\"fullpagename\" value=\"" + item.Key + "\" />");
+                            sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_EDIT + "\" />");
+                            sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
+                            sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                             sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                             sbMenu.Append("</form>");
-                            sbMenu.Append("<span>" + item.Value["Name"] + "</span>");
+                            sbMenu.Append("<span>" + item.Value[Defs.VALUE_NAME] + "</span>");
                             sbMenu.Append("<img src=\"/icons/next.svg\" />");
                         }
                         sbMenu.Append("<div class=\"wrapper\">");
@@ -52,9 +53,9 @@ namespace FMI_web.Pages.Shared
                         if (parents.Length < 4)
                         {
                             sbMenu.Append("<li><form method=\"post\" action=\"/Maineditor\">");
-                            sbMenu.Append("<input type=\"hidden\" name=\"typeofedit\" value=\"add\" />");
-                            sbMenu.Append("<input type=\"hidden\" name=\"pageclass\" value=\"main\" />");
-                            sbMenu.Append("<input type=\"hidden\" name=\"parent\" value=\"" + item.Key + "\" />");
+                            sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_ADD + "\" />");
+                            sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
+                            sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PARENT + "\" value=\"" + item.Key + "\" />");
                             sbMenu.Append("<input type=\"submit\" value=\"Створити сторінку\" />");
                             sbMenu.Append("</form></li>");
                         }
@@ -65,25 +66,25 @@ namespace FMI_web.Pages.Shared
                         if (parents.Length > 2)
                             sbMenu.Append("</li>");
                         break;
-                    case "page":
+                    case Defs.TYPE_PAGE:
                         sbMenu.Append("<li>");
                         sbMenu.Append("<form class=\"editForm\" method=\"post\" action=\"/Maineditor\">");
-                        sbMenu.Append("<input type=\"hidden\" name=\"typeofedit\" value=\"edit\" />");
-                        sbMenu.Append("<input type=\"hidden\" name=\"pageclass\" value=\"main\" />");
-                        sbMenu.Append("<input type=\"hidden\" name=\"fullpagename\" value=\"" + item.Key + "\" />");
+                        sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_EDIT + "\" />");
+                        sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
+                        sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                         sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                         sbMenu.Append("</form>");
-                        sbMenu.Append("<a href=\"/Mainpage/" + item.Key + "\">" + item.Value["Name"] + "</a></li>");
+                        sbMenu.Append("<a href=\"/Mainpage/" + item.Key + "\">" + item.Value[Defs.VALUE_NAME] + "</a></li>");
                         break;
-                    case "link":
+                    case Defs.TYPE_LINK:
                         sbMenu.Append("<li>");
                         sbMenu.Append("<form class=\"editForm\" method=\"post\" action=\"/Maineditor\">");
-                        sbMenu.Append("<input type=\"hidden\" name=\"typeofedit\" value=\"edit\" />");
-                        sbMenu.Append("<input type=\"hidden\" name=\"pageclass\" value=\"main\" />");
-                        sbMenu.Append("<input type=\"hidden\" name=\"fullpagename\" value=\"" + item.Key + "\" />");
+                        sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_EDIT + "\" />");
+                        sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
+                        sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                         sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                         sbMenu.Append("</form>");
-                        sbMenu.Append("<a href=\" + item.Value[\"Content\"] + \">" + item.Value["Name"] + "</a></li>");
+                        sbMenu.Append("<a href=/Mainpage/" + item.Value[Defs.VALUE_CONTENT] + "\">" + item.Value[Defs.VALUE_NAME] + "</a></li>");
                         break;
                     default:
                         break;
