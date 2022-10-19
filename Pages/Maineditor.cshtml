@@ -5,7 +5,7 @@
     @{
         switch (Model.TypeOfEdit)
         {
-            case string check when (check == Defs.TYPE_EDIT_ADD && Model.PageClass == Defs.CLASS_MAIN):
+            case Defs.TYPE_EDIT_ADD:
                 ViewData[Defs.VIEWDATA_PAGENAME] = "Створити сторінку";
                 <form asp-page-handler="add" onsubmit="return getContent()">
                     <label asp-for="PageType">Тип сторінки:</label>
@@ -24,7 +24,8 @@
                         <button type="button" id="ulButton">Невпорядкований список</button>
                         <button type="button" id="olButton">Нумерований список</button>
                         <button type="button" onclick="toggleLinkAdd()">Посилання</button>
-                        <button type="button">Картинка</button>
+                        <label type="button" id="imageButton" for="imageInput">Картинка</label>
+                        <input type="file" id="imageInput" accept="image/png, image/jpeg" />
                         <div class="hidden" id="linkAdd">
                             <label for="linkAddInput">Посилання на сторінку:</label>
                             <input type="text" id="linkAddInput" />
@@ -84,7 +85,8 @@
                         <button type="button" id="ulButton">Невпорядкований список</button>
                         <button type="button" id="olButton">Нумерований список</button>
                         <button type="button" onclick="toggleLinkAdd()">Посилання</button>
-                        <button type="button">Картинка</button>
+                        <label type="button" id="imageButton" for="imageInput">Картинка</label>
+                        <input type="file" id="imageInput" accept="image/png, image/jpeg" />
                         <div class="hidden" id="linkAdd">
                             <label for="linkAddInput">Посилання на сторінку:</label>
                             <input type="text" id="linkAddInput" />

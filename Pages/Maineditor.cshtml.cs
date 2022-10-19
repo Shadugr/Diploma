@@ -23,6 +23,14 @@ namespace FMI_web.Pages
         [BindProperty]
         public string? Parent { get; set; }
         public string ErrorMessage { get; set; } = "";
+
+        private readonly IWebHostEnvironment _environment;
+
+        public MaineditorModel(IWebHostEnvironment environment)
+        {
+            _environment = environment;
+        }
+
         public void OnPost(string? typeofedit, string? pageclass, string? pagetype, string? fullpagename, string? parent)
         {
             TypeOfEdit = typeofedit ?? "";
@@ -192,6 +200,33 @@ namespace FMI_web.Pages
             Hashtables.HashtableToFile(Hashtables.MainPages,
                 Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
             return RedirectToPage("Index");
+        }
+        public IActionResult OnPostUploader(IFormFile UploadImage)
+        {
+            if (UploadImage != null)
+            {
+                int imgCount = Directory.GetFiles(Defs.FILE_IMGDIRECTORY + '/' 
+                    + Defs.FILE_FORMIMAGESDIRECTORY, "*", SearchOption.TopDirectoryOnly).Length;
+                string uploadsFolder = _environment.WebRootPath + '/'
+                    + Defs.FILE_IMGDIRECTORYSHORT + '/' + Defs.FILE_FORMIMAGESDIRECTORY;
+                string newName;
+                if (imgCount == 0)
+                    newName = "1.";
+                else
+                    newName = (imgCount + 1).ToString() + '.';
+                if (UploadImage.ContentType == "image/jpeg")
+                    newName += "jpg";
+                else if (UploadImage.ContentType == "image/png")
+                    newName += "png";
+                string filePath = uploadsFolder + '/' + newName;
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    UploadImage.CopyTo(fileStream);
+                }
+                return new ObjectResult(new { status = '/' + Defs.FILE_IMGDIRECTORYSHORT + '/' 
+                    + Defs.FILE_FORMIMAGESDIRECTORY + '/' + newName });
+            }
+            return new ObjectResult(new { status = "fail" });
         }
     }
 }

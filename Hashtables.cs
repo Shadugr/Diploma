@@ -89,8 +89,9 @@ namespace FMI_web
         }
         public static void FirstStart()
         {
-            if (!Directory.Exists(Defs.FILE_HASHTABLESDIRECTORY))
-                Directory.CreateDirectory(Defs.FILE_HASHTABLESDIRECTORY);
+            Directory.CreateDirectory(Defs.FILE_HASHTABLESDIRECTORY);
+            Directory.CreateDirectory(Defs.FILE_IMGDIRECTORY);
+            Directory.CreateDirectory(Defs.FILE_IMGDIRECTORY + '/' + Defs.FILE_FORMIMAGESDIRECTORY);
         }
     }
 }

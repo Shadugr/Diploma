@@ -523,6 +523,7 @@ FodyWeavers.xsd
 
 # Hashtables igrone
 hashtables
+wwwroot/img
 
 # JetBrains Rider
 

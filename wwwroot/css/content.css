@@ -44,14 +44,15 @@ main input[type=submit] {
     -o-transition: linear background-color 0.2s;
     transition: linear background-color 0.2s;
 }
-main input[type=submit]:hover, main button:hover {
+main input[type=submit]:hover, main button:hover, #imageButton:hover {
     background-color: #3e9be2;
 	-webkit-transition: linear background-color 0.2s;
     -moz-transition: linear background-color 0.2s;
     -o-transition: linear background-color 0.2s;
     transition: linear background-color 0.2s;
 }
-main button {
+main button, #imageButton {
+    display: inline-block;
     color: white;
     background-color: #0082e6;
     padding: 0.5%;
@@ -81,6 +82,9 @@ main button {
 #errorMessage {
     display: block;
     color: red;
+}
+#imageInput {
+    display: none;
 }
 @media only screen and (max-width: 939px) {
 main {

@@ -1,12 +1,14 @@
-﻿document.addEventListener("load", changeSelect());
-
-const editor = document.getElementById("editorPageEditor");
+﻿const editor = document.getElementById("editorPageEditor");
 const boldButton = document.getElementById("boldButton");
 const italicButton = document.getElementById("italicButton");
 const underlineButton = document.getElementById("underlineButton");
 const ulButton = document.getElementById("ulButton");
 const olButton = document.getElementById("olButton");
 const linkAddButton = document.getElementById("linkAddButton");
+const imageInput = document.getElementById("imageInput");
+
+document.addEventListener("load", changeSelect());
+document.addEventListener("load", editor.focus());
 
 function performAction(command) {
     document.execCommand(command, false, null);
@@ -67,4 +69,26 @@ editor.addEventListener("keypress", function () {
     if (this.innerHTML == "" || this.innerHTML == "<br>") {
         this.innerHTML = "<div></br></div>";
     }
+})
+imageInput.addEventListener("change", ev => {
+    var imageLink = "";
+    editor.focus();
+    const formdata = new FormData()
+    formdata.append("UploadImage", ev.target.files[0])
+    jQuery.ajax({
+        type: 'POST',
+        url: "/Maineditor?handler=Uploader",
+        data: formdata,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (repo) {
+            imageLink = repo.status;
+            document.execCommand('insertImage', false, imageLink);
+            editor.focus();
+        },
+        error: function () {
+            alert("Error occurs");
+        }
+    });
 })

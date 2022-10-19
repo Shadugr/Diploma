@@ -27,7 +27,10 @@
         public const string VIEWDATA_PAGENAME = "PageName";
         //File path
         public const string FILE_HASHTABLESDIRECTORY = @"wwwroot/hashtables";
-        public const string FILE_MAINHASHTABLE = nameof(Hashtables.MainPages) + ".json";
+        public const string FILE_MAINHASHTABLE = "MainPages.json";
+        public const string FILE_IMGDIRECTORY = @"wwwroot/img";
+        public const string FILE_IMGDIRECTORYSHORT = @"img";
+        public const string FILE_FORMIMAGESDIRECTORY = "formimages";
         #endregion
     }
 }
