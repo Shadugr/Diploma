@@ -9,8 +9,6 @@ namespace FMI_web.Pages
         [BindProperty]
         public string? TypeOfEdit { get; set; }
         [BindProperty]
-        public string? PageClass { get; set; }
-        [BindProperty]
         public string? PageType { get; set; }
         [BindProperty]
         public string? PageName { get; set; } = "";
@@ -31,10 +29,9 @@ namespace FMI_web.Pages
             _environment = environment;
         }
 
-        public void OnPost(string? typeofedit, string? pageclass, string? pagetype, string? fullpagename, string? parent)
+        public void OnPost(string? typeofedit, string? pagetype, string? fullpagename, string? parent)
         {
             TypeOfEdit = typeofedit ?? "";
-            PageClass = pageclass ?? "";
             PageType = pagetype ?? "";
             FullPageName = fullpagename ?? "";
             Parent = parent ?? "";
@@ -142,6 +139,26 @@ namespace FMI_web.Pages
                             ErrorMessage = "Максимальний рівень меню 3!";
                             return null;
                         }
+                        Dictionary<string, MainPageClass> tempDict = new Dictionary<string, MainPageClass>();
+                        foreach (var item in Hashtables.MainPages.Where(k => k.Key.Contains(fullPage)))
+                            tempDict.Add(item.Key, item.Value);
+                        foreach (var key in tempDict)
+                        {
+                            string[] tempNewKeyArray = key.Key.Split('&');
+                            int indexName = Array.FindIndex(tempNewKeyArray,
+                                k => k.Contains(fullPage.Split('&').Last()));
+                            string[] oldKeyArray = key.Key.Split('&');
+                            string newKey = newFullPage + '&';
+                            for (int i = indexName + 1; i < oldKeyArray.Length; i++)
+                            {
+                                if (i != oldKeyArray.Length - 1)
+                                    newKey += oldKeyArray[i] + '&';
+                                else
+                                    newKey += oldKeyArray[i];
+                            }
+                            Hashtables.MainPages.Add(newKey, key.Value);
+                            Hashtables.MainPages.Remove(key.Key);
+                        }
                         break;
                     default:
                         return RedirectToPage("Index");
@@ -195,7 +212,8 @@ namespace FMI_web.Pages
         {
             if (!string.IsNullOrEmpty(FullPageName))
             {
-                Hashtables.MainPages.Remove(FullPageName);
+                foreach (var key in Hashtables.MainPages.Where(k => k.Key.Contains(FullPageName)))
+                    Hashtables.MainPages.Remove(key.Key);
             }
             Hashtables.HashtableToFile(Hashtables.MainPages,
                 Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);

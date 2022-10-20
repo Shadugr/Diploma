@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,7 +14,6 @@ namespace FMI_web.Pages.Shared
             {
                 sbMenu.Append("<li><form method=\"post\" action=\"/Maineditor\">");
                 sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_ADD + "\" />");
-                sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
                 sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PARENT + "\" value=\"" + parentName + "\" />");
                 sbMenu.Append("<input type=\"submit\" value=\"Створити сторінку\" />");
                 sbMenu.Append("</form></li>");
@@ -41,7 +39,6 @@ namespace FMI_web.Pages.Shared
                             sbMenu.Append("<li class=\"parent\">");
                             sbMenu.Append("<form class=\"editForm\" method=\"post\" action=\"/Maineditor\">");
                             sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_EDIT + "\" />");
-                            sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
                             sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                             sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                             sbMenu.Append("</form>");
@@ -54,7 +51,6 @@ namespace FMI_web.Pages.Shared
                         {
                             sbMenu.Append("<li><form method=\"post\" action=\"/Maineditor\">");
                             sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_ADD + "\" />");
-                            sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
                             sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PARENT + "\" value=\"" + item.Key + "\" />");
                             sbMenu.Append("<input type=\"submit\" value=\"Створити сторінку\" />");
                             sbMenu.Append("</form></li>");
@@ -70,7 +66,6 @@ namespace FMI_web.Pages.Shared
                         sbMenu.Append("<li>");
                         sbMenu.Append("<form class=\"editForm\" method=\"post\" action=\"/Maineditor\">");
                         sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_EDIT + "\" />");
-                        sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
                         sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                         sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                         sbMenu.Append("</form>");
@@ -80,7 +75,6 @@ namespace FMI_web.Pages.Shared
                         sbMenu.Append("<li>");
                         sbMenu.Append("<form class=\"editForm\" method=\"post\" action=\"/Maineditor\">");
                         sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_TYPEOFEDIT + "\" value=\"" + Defs.TYPE_EDIT_EDIT + "\" />");
-                        sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_PAGECLASS + "\" value=\"" + Defs.CLASS_MAIN + "\" />");
                         sbMenu.Append("<input type=\"hidden\" name=\"" + Defs.INPUT_FULLPAGENAME + "\" value=\"" + item.Key + "\" />");
                         sbMenu.Append("<input class=\"editPage\" type=\"submit\" value=\"\" />");
                         sbMenu.Append("</form>");

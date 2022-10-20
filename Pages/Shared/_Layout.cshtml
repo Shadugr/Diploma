@@ -1,9 +1,37 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var location = new Uri($"{Model.Request.Host}{Model.Request.Path}");
+    string[] pageNameArray = location.AbsoluteUri.Split('/');
+    if (pageNameArray.Length <= 2) 
+    {
+        ViewData[Defs.VIEWDATA_PAGE] = Defs.CLASS_STATIC;
+        ViewData[Defs.VIEWDATA_PAGEID] = Defs.PAGE_STATIC_INDEX;
+    }
+    else
+    {
+        switch (pageNameArray[1])
+        {
+            case Defs.PAGE_MAINPAGE:
+                ViewData[Defs.VIEWDATA_PAGE] = Defs.CLASS_MAIN;
+                ViewData[Defs.VIEWDATA_PAGEID] = pageNameArray[2];
+                break;
+            case string contain when (Defs.PAGE_STATIC_PAGES.Contains(pageNameArray[1])):
+                ViewData[Defs.VIEWDATA_PAGE] = Defs.CLASS_STATIC;
+                ViewData[Defs.VIEWDATA_PAGEID] = pageNameArray[1];
+                break;
+            default:
+                ViewData[Defs.VIEWDATA_PAGE] = "";
+                ViewData[Defs.VIEWDATA_PAGEID] = "";
+                break;
+        }
+    }
+}
+
+<!DOCTYPE html>
 <html lang="uk">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData[Defs.VIEWDATA_PAGENAME]</title>
+        <title>@(ViewData[Defs.VIEWDATA_PAGENAME] ?? Defs.VIEWDATA_DEFAULTNAME)</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">

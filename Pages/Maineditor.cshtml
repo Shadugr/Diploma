@@ -44,7 +44,8 @@
                     <input type="submit" value="Створити" />
                 </form>
                 break;
-            case string check when (check == Defs.TYPE_EDIT_EDIT && Hashtables.MainPages.ContainsKey(Model.FullPageName ?? "")):
+            case string check when (check == Defs.TYPE_EDIT_EDIT &&
+                Hashtables.MainPages.ContainsKey(Model.FullPageName ?? "")):
                 ViewData[Defs.VIEWDATA_PAGENAME] = "Редагувати сторінку";
                 <form asp-page-handler="remove">
                     <input type="hidden" asp-for="FullPageName" value="@Model.FullPageName" />

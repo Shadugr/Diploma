@@ -1,9 +1,24 @@
 ﻿@model FMI_web.Pages.Shared._AdminmenuModel
-@{
-}
 
 <menu>
-    <form>
-        <input type="submit" value="Додати сторінку" />
-    </form>
+    @{
+        if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_MAIN 
+        && Hashtables.MainPages.ContainsKey(ViewData[Defs.VIEWDATA_PAGEID].ToString()))
+        {
+            <form method="post" action="/Maineditor">
+                <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
+                <input type="hidden" name="@Defs.INPUT_FULLPAGENAME" value="@ViewData[Defs.VIEWDATA_PAGEID]" />
+                <input type="submit" value="Редагувати сторінку" />
+            </form>
+        }
+        else if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_STATIC
+        && Hashtables.StaticPages.ContainsKey(ViewData[Defs.VIEWDATA_PAGEID].ToString()))
+        {
+            <form method="post" action="/Staticeditor">
+                <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
+                <input type="hidden" name="@Defs.INPUT_FULLPAGENAME" value="@ViewData[Defs.VIEWDATA_PAGEID]" />
+                <input type="submit" value="Редагувати сторінку" />
+            </form>
+        }
+    }
 </menu>

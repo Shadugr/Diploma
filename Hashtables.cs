@@ -21,17 +21,42 @@ namespace FMI_web
         }
         public MainPageClass() {}
     }
+    public class StaticPageClass
+    {
+        public string? Name { get; set; }
+        public string? Content { get; set; }
+
+        public StaticPageClass(string? name, string? content)
+        {
+            Name = name;
+            Content = content;
+        }
+        public StaticPageClass(string? name)
+        {
+            Name = name;
+        }
+        public StaticPageClass() { }
+    }
     public static class Hashtables
     {
         public static Dictionary<string, MainPageClass> MainPages { get; set; }
-            = FileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
+            = MainFileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
+        public static Dictionary<string, StaticPageClass> StaticPages { get; set; }
+            = StaticFileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_STATICHASHTABLE);
 
-        public static void HashtableToFile(Dictionary<string, MainPageClass> table, string path)
+        public static void HashtableToFile<T>(T table, string path)
         {
-            string json = JsonConvert.SerializeObject(table);
-            File.WriteAllText(path, json);
+            try
+            {
+                string json = JsonConvert.SerializeObject(table);
+                File.WriteAllText(path, json);
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+            }
         }
-        public static Dictionary<string, MainPageClass> FileToHashtable(string path)
+        private static Dictionary<string, MainPageClass> MainFileToHashtable(string path)
         {
             if (!File.Exists(path))
                 File.Create(path);
@@ -40,6 +65,22 @@ namespace FMI_web
                 return new Dictionary<string, MainPageClass>();
             return JsonConvert.DeserializeObject<Dictionary<string, MainPageClass>>
                 (File.ReadAllText(path)) ?? new Dictionary<string, MainPageClass>();
+        }
+        private static Dictionary<string, StaticPageClass> StaticFileToHashtable(string path)
+        {
+            if (!File.Exists(path))
+                File.Create(path);
+            var file = new FileInfo(path);
+            if (file.Length == 0)
+            {
+                Dictionary<string, StaticPageClass> temp = new Dictionary<string, StaticPageClass>();
+                temp.Add(Defs.PAGE_STATIC_INDEX, new StaticPageClass("", ""));
+                foreach (var item in Defs.PAGE_STATIC_PAGES)
+                    temp.Add(item, new StaticPageClass("", ""));
+                HashtableToFile(temp, path);
+            }
+            return JsonConvert.DeserializeObject<Dictionary<string, StaticPageClass>>
+                (File.ReadAllText(path)) ?? new Dictionary<string, StaticPageClass>();
         }
 
         public static string ConvertToLatin(string source)

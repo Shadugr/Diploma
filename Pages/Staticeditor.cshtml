@@ -1,0 +1,48 @@
+﻿@page
+@model FMI_web.Pages.StaticeditorModel
+
+
+<main>
+        @{
+            switch (Model.TypeOfEdit)
+            {
+                case string check when (check == Defs.TYPE_EDIT_EDIT && 
+                    Hashtables.StaticPages.ContainsKey(Model.FullPageName ?? "")):
+                    ViewData[Defs.VIEWDATA_PAGENAME] = "Редагувати сторінку";
+                    <form asp-page-handler="edit" onsubmit="return getContent()">
+                        <label asp-for="PageName" onload="changeSelect()">Назва сторінки:</label>
+                        <input type="text" asp-for="PageName" value="@Hashtables.StaticPages[Model.FullPageName ?? ""].Name" required />
+                        <div id="contentEditor" class="contentEditor">
+                            <label>Контент сторінки:</label>
+                            <button type="button" id="boldButton">Жирний</button>
+                            <button type="button" id="italicButton">Курсив</button>
+                            <button type="button" id="underlineButton">Підкреслений</button>
+                            <button type="button" id="ulButton">Невпорядкований список</button>
+                            <button type="button" id="olButton">Нумерований список</button>
+                            <button type="button" onclick="toggleLinkAdd()">Посилання</button>
+                            <label type="button" id="imageButton" for="imageInput">Картинка</label>
+                            <input type="file" id="imageInput" accept="image/png, image/jpeg" />
+                            <div class="hidden" id="linkAdd">
+                                <label for="linkAddInput">Посилання на сторінку:</label>
+                                <input type="text" id="linkAddInput" />
+                                <button type="button" id="linkAddButton">Додати посилання</button>
+                            </div>
+                            <div contenteditable="true" id="editorPageEditor">
+                                @Html.Raw(Hashtables.StaticPages[Model.FullPageName ?? ""].Content)
+                            </div>
+                        </div>
+                        <textarea asp-for="PageContent" id="editorPageContent" style="display:none"></textarea>
+                        <input type="hidden" asp-for="TypeOfEdit" value="@Model.TypeOfEdit" />
+                        <input type="hidden" asp-for="FullPageName" value="@Model.FullPageName" />
+                        <span id="errorMessage">@Model.ErrorMessage</span>
+                        <input type="submit" value="Змінити" />
+                    </form>
+                    break;
+                default:
+                    ViewData[Defs.VIEWDATA_PAGENAME] = "Помилка";
+                    <partial name="_Error" />
+                    break;
+            }
+        }
+    </main>
+<script src="~/js/form.js"></script>

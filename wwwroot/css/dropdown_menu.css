@@ -70,11 +70,11 @@ li > a {
 }
 .mainnav li > .wrapper > ul > li:hover > .wrapper {
 	display: flex;
-	height: 100%;
+	max-height: 15vw;
 }
 .mainnav li > .wrapper > ul > li > .wrapper > ul > li:hover > .wrapper {
 	display: flex;
-	height: 100%;
+	max-height: 15vw;
 }
 .mainnav li .wrapper li {
 	padding: 4%;
