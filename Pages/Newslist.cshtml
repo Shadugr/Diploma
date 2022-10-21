@@ -1,0 +1,45 @@
+﻿@page "{id?}"
+@model FMI_web.Pages.NewslistModel
+@{
+}
+
+<main>
+    @{
+        if (Hashtables.NewsPages.Count > 0)
+        {
+            for (int i = Hashtables.NewsPages.Count - 1, j = 0; i >= 0 
+                && j < Defs.PAGE_NEWSLIST_COUNT; i--, j++)
+        {
+                string str = @Hashtables.NewsPages[i].Content;
+                str = System.Text.RegularExpressions.Regex.Replace(str, "<.*?>", String.Empty);
+                string htmlStr = str.Substring(0, Math.Min(str.Length, 40));
+                if (str.Length > 40)
+                {
+                    htmlStr += "...";
+                }
+                <div class="newsfacultlist">
+                    <a href="Newspage/@i"><img src="@Hashtables.NewsPages[i].Logo" /></a>
+                    <a href="Newspage/@i"><span>@Hashtables.NewsPages[i].Name</span></a>
+                    <span class="text">@htmlStr</span>
+                    <span class="tag">@Hashtables.NewsPages[i].Tag</span>
+                    <span class="date">@Hashtables.NewsPages[i].Date</span>
+                </div>
+            }
+        }
+        if (Hashtables.NewsPages.Count >= 0)
+        {
+            <div class="pageSelector">
+            @if (Model.Id >= 2)
+            {
+                <a href="Newslist/1">&lt;&lt;</a>
+                <a href="Newslist/@(Model.Id-1)">&lt;</a>
+            }
+            @if (Model.Id <= Hashtables.NewsPages.Count - 1)
+            {
+                <a href="Newslist/@(Model.Id+1)">&gt;</a>
+                <a href="Newslist/1">&gt;&gt;</a>
+            }
+            </div>
+        }       
+    }
+</main>

@@ -1,7 +1,7 @@
 ﻿@{
     var location = new Uri($"{Model.Request.Host}{Model.Request.Path}");
     string[] pageNameArray = location.AbsoluteUri.Split('/');
-    if (pageNameArray.Length <= 2) 
+    if (string.IsNullOrEmpty(pageNameArray[1])) 
     {
         ViewData[Defs.VIEWDATA_PAGE] = Defs.CLASS_STATIC;
         ViewData[Defs.VIEWDATA_PAGEID] = Defs.PAGE_STATIC_INDEX;
@@ -10,9 +10,17 @@
     {
         switch (pageNameArray[1])
         {
-            case Defs.PAGE_MAINPAGE:
+            case string contain when (contain == Defs.PAGE_MAINPAGE && pageNameArray.Length > 2):
                 ViewData[Defs.VIEWDATA_PAGE] = Defs.CLASS_MAIN;
                 ViewData[Defs.VIEWDATA_PAGEID] = pageNameArray[2];
+                break;
+            case string contain when (contain == Defs.PAGE_NEWSPAGE && pageNameArray.Length > 2):
+                ViewData[Defs.VIEWDATA_PAGE] = Defs.CLASS_NEWS;
+                ViewData[Defs.VIEWDATA_PAGEID] = pageNameArray[2];
+                break;
+            case Defs.PAGE_NEWSLIST:
+                ViewData[Defs.VIEWDATA_PAGE] = Defs.CLASS_NEWS;
+                ViewData[Defs.VIEWDATA_PAGEID] = pageNameArray[1];
                 break;
             case string contain when (Defs.PAGE_STATIC_PAGES.Contains(pageNameArray[1])):
                 ViewData[Defs.VIEWDATA_PAGE] = Defs.CLASS_STATIC;

@@ -6,6 +6,7 @@
         //Page classes
         public const string CLASS_MAIN = "main";
         public const string CLASS_STATIC = "static";
+        public const string CLASS_NEWS = "news";
         //Page types
         public const string TYPE_PAGE = "page";
         public const string TYPE_LINK = "link";
@@ -13,6 +14,10 @@
         //Pages name
         public const string PAGE_MAINPAGE = "Mainpage";
         public const string PAGE_STATIC_INDEX = "Index";
+        public const string PAGE_NEWSLIST = "Newslist";
+        public const int PAGE_NEWSLIST_COUNT = 9;
+        public const int PAGE_NEWSLIST_SIDEBARCOUNT = 3;
+        public const string PAGE_NEWSPAGE = "Newspage";
         public static readonly string[] PAGE_STATIC_PAGES = { "Abiturient" };
         //Page type of edit
         public const string TYPE_EDIT_ADD = "add";
@@ -22,6 +27,7 @@
         public const string INPUT_PAGECLASS = "pageclass";
         public const string INPUT_FULLPAGENAME = "fullpagename";
         public const string INPUT_PARENT = "parent";
+        public const string INPUT_ID = "id";
         //Menu list
         public const string MENU_OSV_D = "osvitnya_diyalnist";
         public const string MENU_PRO_F = "pro_fakultet";
@@ -35,9 +41,11 @@
         public const string FILE_HASHTABLESDIRECTORY = @"wwwroot/hashtables";
         public const string FILE_MAINHASHTABLE = "MainPages.json";
         public const string FILE_STATICHASHTABLE = "StaticPages.json";
+        public const string FILE_NEWSHASHTABLE = "NewsPages.json";
         public const string FILE_IMGDIRECTORY = @"wwwroot/img";
         public const string FILE_IMGDIRECTORYSHORT = @"img";
         public const string FILE_FORMIMAGESDIRECTORY = "formimages";
+        public const string FILE_NEWSIMAGESDIRECTORY = "newsimages";
         #endregion
     }
 }

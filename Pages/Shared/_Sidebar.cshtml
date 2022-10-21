@@ -4,31 +4,28 @@
 }
 
 <aside id="news">
-    <div>
-        <a><img src="~/img/normal.jpg" /></a>
-        <a><span>Турнір з програмування</span></a>
-        <span class="text">
-            Обласний науковий ліцей в м. Рівне запрошує учнів, студентів, вчителів, викладачів та усіх охочих проявити свої вміння з алгоритмічного...
-        </span>
-        <span class="tag">Новини</span>
-        <span class="date">10 вересня 2022</span>
-    </div>
-    <div>
-        <a><img src="~/img/normal.jpg" /></a>
-        <a><span>Турнір з програмування</span></a>
-        <span class="text">
-            Обласний науковий ліцей в м. Рівне запрошує учнів, студентів, вчителів, викладачів та усіх охочих проявити свої вміння з алгоритмічного...
-        </span>
-        <span class="tag">Новини</span>
-        <span class="date">10 вересня 2022</span>
-    </div>
-    <div>
-        <a><img src="~/img/normal.jpg" /></a>
-        <a><span>Турнір з програмування</span></a>
-        <span class="text">
-            Обласний науковий ліцей в м. Рівне запрошує учнів, студентів, вчителів, викладачів та усіх охочих проявити свої вміння з алгоритмічного...
-        </span>
-        <span class="tag">Новини</span>
-        <span class="date">10 вересня 2022</span>
-    </div>
+    <a href="/Newslist">Новини</a>
+    @{
+        if (Hashtables.NewsPages.Count > 0)
+        {
+            for (int i = Hashtables.NewsPages.Count - 1, j = 0; i >= 0
+            && j < Defs.PAGE_NEWSLIST_SIDEBARCOUNT; i--, j++)
+            {
+                string str = @Hashtables.NewsPages[i].Content;
+                str = System.Text.RegularExpressions.Regex.Replace(str, "<.*?>", String.Empty);
+                string htmlStr = str.Substring(0, Math.Min(str.Length, 40));
+                if (str.Length > 40)
+                {
+                    htmlStr += "...";
+                }
+                <div>
+                    <a href="Newspage/@i"><img src="@Hashtables.NewsPages[i].Logo" /></a>
+                    <a><span>@Hashtables.NewsPages[i].Name</span></a>
+                    <span class="text">@htmlStr</span>
+                    <span class="tag">@Hashtables.NewsPages[i].Tag</span>
+                    <span class="date">@Hashtables.NewsPages[i].Date</span>
+                </div>
+            }
+        }
+    }
 </aside>

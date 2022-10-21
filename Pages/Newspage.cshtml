@@ -1,0 +1,22 @@
+﻿@page "{id?}"
+@model FMI_web.Pages.NewspageModel
+@{
+}
+
+<main>
+    @{
+        if (Model.Id >= 0 && Model.Id < Hashtables.NewsPages.Count)
+        {
+            <img src="@Hashtables.NewsPages[(int)Model.Id].Logo" />
+            <div class="tag">@Hashtables.NewsPages[(int)Model.Id].Tag</div>
+            <h1>@Hashtables.NewsPages[(int)Model.Id].Name</h1>
+            <div class="text">@Html.Raw(Hashtables.NewsPages[(int)Model.Id].Content)</div>
+            <div class="date">@Hashtables.NewsPages[(int)Model.Id].Date</div>
+        }
+        else
+        {
+            ViewData[Defs.VIEWDATA_PAGENAME] = "Помилка";
+            <partial name="_Error" />
+        }
+    }
+</main>

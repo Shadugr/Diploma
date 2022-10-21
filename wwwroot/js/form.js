@@ -36,7 +36,7 @@ function changeSelect() {
         document.getElementById("pageContentLink").classList.remove("hidden");
         document.getElementById("pageContentLink").classList.add("display");
     }
-    else {
+    else if (value == "list") {
         document.getElementById("contentEditor").classList.add("hidden");
         document.getElementById("contentEditor").classList.remove("display");
         document.getElementById("pageContentLink").classList.add("hidden");
@@ -71,7 +71,12 @@ editor.addEventListener("keypress", function () {
     }
 })
 imageInput.addEventListener("change", ev => {
-    var imageLink = "";
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents(editor);
+    range.collapse(false);
+    selection.addRange(range);
     editor.focus();
     const formdata = new FormData()
     formdata.append("UploadImage", ev.target.files[0])
@@ -83,8 +88,7 @@ imageInput.addEventListener("change", ev => {
         contentType: false,
         processData: false,
         success: function (repo) {
-            imageLink = repo.status;
-            document.execCommand('insertImage', false, imageLink);
+            document.execCommand('insertImage', false, repo.status);
             editor.focus();
         },
         error: function () {

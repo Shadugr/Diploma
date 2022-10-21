@@ -18,6 +18,15 @@ aside > div > a {
     font-size: 20px;
     cursor: pointer;
 }
+aside > a {
+    display: flex;
+    justify-content: center;
+    margin: 1% 0;
+    font-weight: bold;
+    padding: 2% 0;
+    font-size: 20px;
+    cursor: pointer;
+}
 aside .text {
     display: block;
     margin-bottom: 4%;

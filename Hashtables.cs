@@ -37,12 +37,32 @@ namespace FMI_web
         }
         public StaticPageClass() { }
     }
+    public class NewsPageClass
+    {
+        public string? Name { get; set; }
+        public string? Tag { get; set; }
+        public string? Content { get; set; }
+        public string? Date { get; set; }
+        public string? Logo { get; set; }
+
+        public NewsPageClass(string? name, string? tag, string? content, string? date, string? logo)
+        {
+            Name = name;
+            Tag = tag;
+            Content = content;
+            Date = date;
+            Logo = logo;
+        }
+        public NewsPageClass() { }
+    }
     public static class Hashtables
     {
         public static Dictionary<string, MainPageClass> MainPages { get; set; }
             = MainFileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
         public static Dictionary<string, StaticPageClass> StaticPages { get; set; }
             = StaticFileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_STATICHASHTABLE);
+        public static List<NewsPageClass> NewsPages { get; set; }
+            = NewsFileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_NEWSHASHTABLE);
 
         public static void HashtableToFile<T>(T table, string path)
         {
@@ -81,6 +101,16 @@ namespace FMI_web
             }
             return JsonConvert.DeserializeObject<Dictionary<string, StaticPageClass>>
                 (File.ReadAllText(path)) ?? new Dictionary<string, StaticPageClass>();
+        }
+        private static List<NewsPageClass> NewsFileToHashtable(string path)
+        {
+            if (!File.Exists(path))
+                File.Create(path);
+            var file = new FileInfo(path);
+            if (file.Length == 0)
+                return new List<NewsPageClass>();
+            return JsonConvert.DeserializeObject<List<NewsPageClass>>
+                (File.ReadAllText(path)) ?? new List<NewsPageClass>();
         }
 
         public static string ConvertToLatin(string source)
@@ -133,6 +163,7 @@ namespace FMI_web
             Directory.CreateDirectory(Defs.FILE_HASHTABLESDIRECTORY);
             Directory.CreateDirectory(Defs.FILE_IMGDIRECTORY);
             Directory.CreateDirectory(Defs.FILE_IMGDIRECTORY + '/' + Defs.FILE_FORMIMAGESDIRECTORY);
+            Directory.CreateDirectory(Defs.FILE_IMGDIRECTORY + '/' + Defs.FILE_NEWSIMAGESDIRECTORY);
         }
     }
 }
