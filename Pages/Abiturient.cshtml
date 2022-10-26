@@ -1,0 +1,9 @@
+﻿@page
+
+<main>
+    @{
+        string pageName = Defs.PAGE_STATIC_PAGES[0];
+        ViewData[Defs.VIEWDATA_PAGENAME] = Hashtables.StaticPages[pageName].Name;
+        @Html.Raw(Hashtables.StaticPages[pageName].Content)
+    }
+</main>

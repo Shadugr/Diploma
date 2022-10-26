@@ -6,6 +6,7 @@ const ulButton = document.getElementById("ulButton");
 const olButton = document.getElementById("olButton");
 const linkAddButton = document.getElementById("linkAddButton");
 const imageInput = document.getElementById("imageInput");
+const select = document.getElementById("selectType");
 
 document.addEventListener("load", changeSelect());
 document.addEventListener("load", editor.focus());
@@ -22,25 +23,26 @@ function getContent() {
     document.getElementById("editorPageContent").value = document.getElementById("editorPageEditor").innerHTML;
 }
 function changeSelect() {
-    var select = document.getElementById("selectType");
-    var value = select.options[select.selectedIndex].value;
-    if (value == "page") {
-        document.getElementById("contentEditor").classList.remove("hidden");
-        document.getElementById("contentEditor").classList.add("display");
-        document.getElementById("pageContentLink").classList.add("hidden");
-        document.getElementById("pageContentLink").classList.remove("display");
-    }
-    else if (value == "link") {
-        document.getElementById("contentEditor").classList.add("hidden");
-        document.getElementById("contentEditor").classList.remove("display");
-        document.getElementById("pageContentLink").classList.remove("hidden");
-        document.getElementById("pageContentLink").classList.add("display");
-    }
-    else if (value == "list") {
-        document.getElementById("contentEditor").classList.add("hidden");
-        document.getElementById("contentEditor").classList.remove("display");
-        document.getElementById("pageContentLink").classList.add("hidden");
-        document.getElementById("pageContentLink").classList.remove("display");
+    if (select != null) {
+        var value = select.options[select.selectedIndex].value;
+        if (value == "page") {
+            document.getElementById("contentEditor").classList.remove("hidden");
+            document.getElementById("contentEditor").classList.add("display");
+            document.getElementById("pageContentLink").classList.add("hidden");
+            document.getElementById("pageContentLink").classList.remove("display");
+        }
+        else if (value == "link") {
+            document.getElementById("contentEditor").classList.add("hidden");
+            document.getElementById("contentEditor").classList.remove("display");
+            document.getElementById("pageContentLink").classList.remove("hidden");
+            document.getElementById("pageContentLink").classList.add("display");
+        }
+        else if (value == "list") {
+            document.getElementById("contentEditor").classList.add("hidden");
+            document.getElementById("contentEditor").classList.remove("display");
+            document.getElementById("pageContentLink").classList.add("hidden");
+            document.getElementById("pageContentLink").classList.remove("display");
+        }
     }
 }
 

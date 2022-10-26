@@ -4,14 +4,14 @@
 }
 
 <aside id="news">
-    <a href="/Newslist">Новини</a>
+    <a href="/Newslist/1">Новини</a>
     @{
         if (Hashtables.NewsPages.Count > 0)
         {
             for (int i = Hashtables.NewsPages.Count - 1, j = 0; i >= 0
             && j < Defs.PAGE_NEWSLIST_SIDEBARCOUNT; i--, j++)
             {
-                string str = @Hashtables.NewsPages[i].Content;
+                string str = Hashtables.NewsPages[i].Content ?? "";
                 str = System.Text.RegularExpressions.Regex.Replace(str, "<.*?>", String.Empty);
                 string htmlStr = str.Substring(0, Math.Min(str.Length, 40));
                 if (str.Length > 40)
@@ -19,8 +19,8 @@
                     htmlStr += "...";
                 }
                 <div>
-                    <a href="Newspage/@i"><img src="@Hashtables.NewsPages[i].Logo" /></a>
-                    <a><span>@Hashtables.NewsPages[i].Name</span></a>
+                    <a href="/Newspage/@i"><img src="@Hashtables.NewsPages[i].Logo" /></a>
+                    <a href="/Newspage/@i"><span>@Hashtables.NewsPages[i].Name</span></a>
                     <span class="text">@htmlStr</span>
                     <span class="tag">@Hashtables.NewsPages[i].Tag</span>
                     <span class="date">@Hashtables.NewsPages[i].Date</span>

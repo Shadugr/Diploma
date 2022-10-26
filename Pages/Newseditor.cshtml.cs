@@ -65,7 +65,7 @@ namespace FMI_web.Pages
             Hashtables.NewsPages.Add(temp);
             Hashtables.HashtableToFile(Hashtables.NewsPages,
                 Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_NEWSHASHTABLE);
-            return RedirectToPage($"Newslist");
+            return Redirect($"/Newspage/{Hashtables.NewsPages.Count - 1}");
         }
         public IActionResult? OnPostEdit()
         {

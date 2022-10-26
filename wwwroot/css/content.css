@@ -114,7 +114,7 @@ main button, #imageButton {
 }
 .pageSelector > a {
     color: black;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 5px;
     background-color: lightgray;
     padding: 1%;
@@ -122,7 +122,7 @@ main button, #imageButton {
 }
 .pageSelector > a:hover {
     color: black;
-    border: 1px solid black;
+    border: 1px solid gray;
 }
 #errorMessage {
     display: block;
@@ -157,6 +157,11 @@ main ol > li {
     border-radius: 15px;
     display: block;
 }
+.pageSelector a {
+    margin-top: 5%;
+    width: 25%;
+    text-align: center;
+}
 }
 @media only screen and (min-width: 940px) {
 main {
@@ -189,5 +194,8 @@ main a:hover {
     display: inline-block;
     width: 30%;
     height: auto;
+}
+.newsfacultlist img {
+    max-height: 10vw;
 }
 }

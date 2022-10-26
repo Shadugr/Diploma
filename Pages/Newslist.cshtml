@@ -1,45 +1,66 @@
 ﻿@page "{id?}"
 @model FMI_web.Pages.NewslistModel
 @{
+    double pageCountDouble = (Hashtables.NewsPages.Count / 1.0) / (Defs.PAGE_NEWSLIST_COUNT / 1.0);
+    int numOfPages = (int)Math.Ceiling(pageCountDouble);
 }
 
 <main>
     @{
-        if (Hashtables.NewsPages.Count > 0)
+        if (Model.Id <= numOfPages && Model.Id > 0)
         {
-            for (int i = Hashtables.NewsPages.Count - 1, j = 0; i >= 0 
+            if (Hashtables.NewsPages.Count > 0)
+            {
+                for (int i = Hashtables.NewsPages.Count * (int)Model.Id - 1, j = 0; i >= 0
                 && j < Defs.PAGE_NEWSLIST_COUNT; i--, j++)
-        {
-                string str = @Hashtables.NewsPages[i].Content;
-                str = System.Text.RegularExpressions.Regex.Replace(str, "<.*?>", String.Empty);
-                string htmlStr = str.Substring(0, Math.Min(str.Length, 40));
-                if (str.Length > 40)
                 {
-                    htmlStr += "...";
+                    string str = Hashtables.NewsPages[i].Content ?? "";
+                    str = System.Text.RegularExpressions.Regex.Replace(str, "<.*?>", String.Empty);
+                    string htmlStr = str.Substring(0, Math.Min(str.Length, 40));
+                    if (str.Length > 40)
+                    {
+                        htmlStr += "...";
+                    }
+                    <div class="newsfacultlist">
+                        <a href="/Newspage/@i"><img src="@Hashtables.NewsPages[i].Logo" /></a>
+                        <a href="/Newspage/@i"><span>@Hashtables.NewsPages[i].Name</span></a>
+                        <span class="text">@htmlStr</span>
+                        <span class="tag">@Hashtables.NewsPages[i].Tag</span>
+                        <span class="date">@Hashtables.NewsPages[i].Date</span>
+                    </div>
                 }
-                <div class="newsfacultlist">
-                    <a href="Newspage/@i"><img src="@Hashtables.NewsPages[i].Logo" /></a>
-                    <a href="Newspage/@i"><span>@Hashtables.NewsPages[i].Name</span></a>
-                    <span class="text">@htmlStr</span>
-                    <span class="tag">@Hashtables.NewsPages[i].Tag</span>
-                    <span class="date">@Hashtables.NewsPages[i].Date</span>
+                <div class="pageSelector">
+                    <a href="1">&lt;&lt;</a>
+                    @{
+                        if (Model.Id > 1)
+                        {
+                            <a href="@(Model.Id - 1)">&lt;</a>
+                        }
+                        else
+                        {
+                            <a>&lt;</a>
+                        }
+                        if (Model.Id < numOfPages)
+                        {
+                            <a href="@(Model.Id + 1)">&gt;</a>
+                        }
+                        else
+                        {
+                            <a>&gt;</a>
+                        }
+                    }
+                    <a href="@numOfPages">&gt;&gt;</a>
                 </div>
             }
         }
-        if (Hashtables.NewsPages.Count >= 0)
+        else if (Hashtables.NewsPages.Count == 0)
         {
-            <div class="pageSelector">
-            @if (Model.Id >= 2)
-            {
-                <a href="Newslist/1">&lt;&lt;</a>
-                <a href="Newslist/@(Model.Id-1)">&lt;</a>
-            }
-            @if (Model.Id <= Hashtables.NewsPages.Count - 1)
-            {
-                <a href="Newslist/@(Model.Id+1)">&gt;</a>
-                <a href="Newslist/1">&gt;&gt;</a>
-            }
-            </div>
-        }       
+            <h1>Новин немає.</h1>
+        }
+        else
+        {
+            ViewData[Defs.VIEWDATA_PAGENAME] = "Помилка";
+            <partial name="_Error" />
+        }
     }
 </main>
