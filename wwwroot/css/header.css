@@ -151,7 +151,7 @@ li > img {
 @media only screen and (min-width: 940px) {
 nav > ul {
     display: flex;
-    width: 55%;
+    width: 60%;
     justify-content: center;
     height: 100%;
 }
@@ -176,7 +176,7 @@ nav > ul > li:hover {
 }
 .searchlog {
     display: flex;
-    width: 20%;
+    width: 15%;
     align-items: end;
     justify-content: right;
 }

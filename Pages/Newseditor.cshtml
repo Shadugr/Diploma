@@ -20,20 +20,22 @@
                     <label asp-for="PageName">Назва сторінки:</label>
                     <input type="text" asp-for="PageName" required />
                     <div id="contentEditor" class="contentEditor">
-                        <label>Контент сторінки:</label>
-                        <button type="button" id="boldButton">Жирний</button>
-                        <button type="button" id="italicButton">Курсив</button>
-                        <button type="button" id="underlineButton">Підкреслений</button>
-                        <button type="button" id="ulButton">Невпорядкований список</button>
-                        <button type="button" id="olButton">Нумерований список</button>
-                        <button type="button" onclick="toggleLinkAdd()">Посилання</button>
-                        <label type="button" id="imageButton" for="imageInput">Картинка</label>
-                        <input type="file" id="imageInput" accept="image/png, image/jpeg" />
-                        <div class="hidden" id="linkAdd">
-                            <label for="linkAddInput">Посилання на сторінку:</label>
-                            <input type="text" id="linkAddInput" />
-                            <button type="button" id="linkAddButton">Додати посилання</button>
+                        <div class="editTools">
+                            <button type="button" id="boldButton">Жирний</button>
+                            <button type="button" id="italicButton">Курсив</button>
+                            <button type="button" id="underlineButton">Підкреслений</button>
+                            <button type="button" id="ulButton">Невпорядкований список</button>
+                            <button type="button" id="olButton">Нумерований список</button>
+                            <button type="button" onclick="toggleLinkAdd()">Посилання</button>
+                            <label type="button" id="imageButton" for="imageInput">Картинка</label>
+                            <input type="file" id="imageInput" accept="image/png, image/jpeg" />
+                            <div class="hidden" id="linkAdd">
+                                <label for="linkAddInput">Посилання на сторінку:</label>
+                                <input type="text" id="linkAddInput" />
+                                <button type="button" id="linkAddButton">Додати посилання</button>
+                            </div>
                         </div>
+                        <label>Контент сторінки:</label>
                         <div contenteditable="true" id="editorPageEditor"></div>
                     </div>
                     <textarea asp-for="PageContent" id="editorPageContent" style="display:none"></textarea>
@@ -72,20 +74,22 @@
                     <label asp-for="PageName" onload="changeSelect()">Назва сторінки:</label>
                     <input type="text" asp-for="PageName" value="@Hashtables.NewsPages[(int)Model.Id].Name" required />
                     <div id="contentEditor" class="contentEditor">
-                        <label>Контент сторінки:</label>
-                        <button type="button" id="boldButton">Жирний</button>
-                        <button type="button" id="italicButton">Курсив</button>
-                        <button type="button" id="underlineButton">Підкреслений</button>
-                        <button type="button" id="ulButton">Невпорядкований список</button>
-                        <button type="button" id="olButton">Нумерований список</button>
-                        <button type="button" onclick="toggleLinkAdd()">Посилання</button>
-                        <label type="button" id="imageButton" for="imageInput">Картинка</label>
-                        <input type="file" id="imageInput" accept="image/png, image/jpeg" />
-                        <div class="hidden" id="linkAdd">
-                            <label for="linkAddInput">Посилання на сторінку:</label>
-                            <input type="text" id="linkAddInput" />
-                            <button type="button" id="linkAddButton">Додати посилання</button>
+                        <div class="editTools">
+                            <button type="button" id="boldButton">Жирний</button>
+                            <button type="button" id="italicButton">Курсив</button>
+                            <button type="button" id="underlineButton">Підкреслений</button>
+                            <button type="button" id="ulButton">Невпорядкований список</button>
+                            <button type="button" id="olButton">Нумерований список</button>
+                            <button type="button" onclick="toggleLinkAdd()">Посилання</button>
+                            <label type="button" id="imageButton" for="imageInput">Картинка</label>
+                            <input type="file" id="imageInput" accept="image/png, image/jpeg" />
+                            <div class="hidden" id="linkAdd">
+                                <label for="linkAddInput">Посилання на сторінку:</label>
+                                <input type="text" id="linkAddInput" />
+                                <button type="button" id="linkAddButton">Додати посилання</button>
+                            </div>
                         </div>
+                        <label>Контент сторінки:</label>
                         <div contenteditable="true" id="editorPageEditor">
                             @Html.Raw(Hashtables.NewsPages[(int)Model.Id].Content)
                         </div>

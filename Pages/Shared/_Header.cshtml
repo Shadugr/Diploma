@@ -25,7 +25,20 @@
             </div>
         </li>
         <li><a href="/Abiturient">Абітурієнту</a></li>
-        <li><span>Кафедри</span></li>
+        <li class="menuItem">
+            <span>Кафедри</span>
+            <img class="mobile" src="~/icons/next.svg" />
+            <div class="wrapper nondisplay">
+                <ul>@Model.GenerateMenuMain(Defs.MENU_KAF)</ul>
+            </div>
+        </li>
+        <li class="menuItem">
+            <span>Скринька довіри</span>
+            <img class="mobile" src="~/icons/next.svg" />
+            <div class="wrapper nondisplay">
+                <ul>@Model.GenerateMenuMain(Defs.MENU_SKR_D)</ul>
+            </div>
+        </li>
         <li class="menuItem">
             <span>Онлайн розклад</span>
             <img class="mobile" src="~/icons/next.svg" />

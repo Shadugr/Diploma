@@ -124,6 +124,13 @@ main button, #imageButton {
     color: black;
     border: 1px solid gray;
 }
+.editTools {
+    position: fixed;
+    top: 85px;
+    width: 100%;
+    left: 0;
+    background-color: white;
+}
 #errorMessage {
     display: block;
     color: red;

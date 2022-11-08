@@ -32,6 +32,8 @@
         public const string MENU_OSV_D = "osvitnya_diyalnist";
         public const string MENU_PRO_F = "pro_fakultet";
         public const string MENU_ONL_R = "onlayn_rozklad";
+        public const string MENU_KAF = "kafedry";
+        public const string MENU_SKR_D = "skrynka_doviry";
         //View Data
         public const string VIEWDATA_DEFAULTNAME = "Факультет математики та інформатики";
         public const string VIEWDATA_PAGENAME = "PageName";
