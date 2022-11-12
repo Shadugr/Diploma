@@ -69,7 +69,7 @@ menu form {
     margin: 0.3%;
     justify-content: center;
 }
-menu input[type=submit] {
+menu input[type=submit], .loginScreen input[type=submit] {
     color: white;
     background-color: #0082e6;
     padding: 0.5%;
@@ -81,12 +81,31 @@ menu input[type=submit] {
     transition: linear background-color 0.2s;
     text-align: center;
 }
-menu input[type=submit]:hover {
+menu input[type=submit]:hover, .loginScreen input[type=submit]:hover {
     background-color: #3e9be2;
 	-webkit-transition: linear background-color 0.2s;
     -moz-transition: linear background-color 0.2s;
     -o-transition: linear background-color 0.2s;
     transition: linear background-color 0.2s;
+}
+.loginScreen {
+    top: 0;
+    z-index: 2000;
+    position: fixed;
+    background-color: rgba(128, 128, 128, 0.5);
+    width: 100%;
+    height: 100%;
+}
+.loginScreen > div > form > input[type=submit] {
+    margin: 2% 0;
+    padding: 2%;
+    display: block;
+}
+.loginScreen > div > form > input[type=text], .loginScreen > div > form > input[type=password] {
+    margin: 2% 0;
+    padding: 1% 2%;
+    border: 1px solid gray;
+    border-radius: 5px;
 }
 @media only screen and (max-width: 939px) {
 nav {
@@ -147,6 +166,26 @@ li > img {
     -o-transition: linear all 0.2s;
     transition: linear all 0.2s;
 }
+.loginScreen > div {
+    padding: 1%;
+    margin: 0;
+    top: 50%;
+    -ms-transform: translate(0, 100%);
+    transform: translate(0, 100%);
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid dimgray;
+    border-radius: 16px;
+}
+.loginScreen > div > form > input {
+    width: 100%;
+}
+.loginScreen > div > button > img {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    width: 20px !important;
+    cursor: pointer;
+}
 }
 @media only screen and (min-width: 940px) {
 nav > ul {
@@ -194,5 +233,27 @@ menu {
 }
 nav input[type=submit] {
     cursor: pointer;
+}
+.loginScreen > div {
+    padding: 1%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid dimgray;
+    border-radius: 16px;
+}
+.loginScreen > div > button > img {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 20px !important;
+    cursor: pointer;
+}
+.loginScreen > div > form > input[type=text], .loginScreen > div > form > input[type=password] {
+    width: 100%;
 }
 }

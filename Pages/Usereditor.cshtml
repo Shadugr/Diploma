@@ -1,0 +1,99 @@
+﻿@page
+@model FMI_web.Pages.UsereditorModel
+
+<main>
+    @{
+        switch (Model.TypeOfEdit)
+        {
+            case string check when (check == Defs.TYPE_EDIT_ADD &&
+            HttpContext.Session.GetString(Defs.SESSION_ACCESS) == Defs.USER_ADMIN_ACCESS):
+                ViewData[Defs.VIEWDATA_PAGENAME] = "Створити користувача";
+                <form asp-page-handler="add" method="post">
+                    <label asp-for="Login">Логін:</label>
+                    <input type="text" asp-for="Login" required />
+                    <label asp-for="Password">Пароль:</label>
+                    <input type="text" asp-for="Password" required />
+                    <label asp-for="Access">Тип користувача:</label>
+                    <select asp-for="Access" id="selectType" required>
+                        <option value="@Defs.USER_MODERATOR_ACCESS" selected>Модератор</option>
+                        <option value="@Defs.USER_ADMIN_ACCESS">Адміністратор</option>
+                    </select>
+                    <span id="errorMessage">@Model.ErrorMessage</span>
+                    <input type="submit" value="Створити" />
+                </form>
+                break;
+            case string check when (check == Defs.TYPE_EDIT_EDIT &&
+            (HttpContext.Session.GetString(Defs.SESSION_ACCESS) == Defs.USER_ADMIN_ACCESS ||
+            HttpContext.Session.GetString(Defs.SESSION_ACCESS) == Defs.USER_MODERATOR_ACCESS)):
+                ViewData[Defs.VIEWDATA_PAGENAME] = "Редагувати користувачів";
+                <span id="errorMessage">@Model.ErrorMessage</span>
+                <form asp-page-handler="edit" method="post">
+                    <label asp-for="Login">Логін:</label>
+                    <input type="text" asp-for="Login" value="@HttpContext.Session.GetString(Defs.SESSION_LOGIN)" required />
+                    <label asp-for="Password">Пароль:</label>
+                    <input type="text" asp-for="Password" value="@Hashtables.Users.Find(l => l.Login == @HttpContext.Session.GetString(Defs.SESSION_LOGIN)).Password" required />
+                    @{
+                        if (HttpContext.Session.GetString(Defs.SESSION_ACCESS) == Defs.USER_ADMIN_ACCESS)
+                        {
+                            <label asp-for="Access">Тип користувача:</label>
+                            <select asp-for="Access" id="selectType" required>
+                                if (Hashtables.Users.Find(l => l.Login == @HttpContext.Session.GetString(Defs.SESSION_LOGIN)).Access == Defs.USER_MODERATOR_ACCESS)
+                                {
+                                    <option value="@Defs.USER_MODERATOR_ACCESS" selected>Модератор</option>
+                                    <option value="@Defs.USER_ADMIN_ACCESS">Адміністратор</option>    
+                                }
+                                else
+                                {
+                                    <option value="@Defs.USER_MODERATOR_ACCESS">Модератор</option>
+                                    <option value="@Defs.USER_ADMIN_ACCESS" selected>Адміністратор</option>  
+                                }
+                            </select>
+                        }
+                    }
+                    <input type="hidden" asp-for="OldLogin" value="@HttpContext.Session.GetString(Defs.SESSION_LOGIN)" />
+                    <input type="submit" value="Редагувати" />
+                </form>
+                @if (HttpContext.Session.GetString(Defs.SESSION_ACCESS) == Defs.USER_ADMIN_ACCESS)
+                    {
+                        foreach (var item in Hashtables.Users)
+                        {
+                            if (item.Login != HttpContext.Session.GetString(Defs.SESSION_LOGIN))
+                            {
+                                <form asp-page-handler="edit" method="post" class="borderForm">
+                                    <label asp-for="Login">Логін:</label>
+                                    <input type="text" asp-for="Login" value="@item.Login" required />
+                                    <label asp-for="Password">Пароль:</label>
+                                    <input type="text" asp-for="Password" value="@item.Password" required />
+                                    <label asp-for="Access">Тип користувача:</label>
+                                    <select asp-for="Access" id="selectType" required>
+                                        @{
+                                            if (item.Access == Defs.USER_MODERATOR_ACCESS)
+                                            {
+                                                <option value="@Defs.USER_MODERATOR_ACCESS" selected>Модератор</option>
+                                                <option value="@Defs.USER_ADMIN_ACCESS">Адміністратор</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@Defs.USER_MODERATOR_ACCESS">Модератор</option>
+                                                <option value="@Defs.USER_ADMIN_ACCESS" selected>Адміністратор</option>
+                                            }
+                                        }
+                                    </select>
+                                    <input type="hidden" asp-for="OldLogin" value="@item.Login" />
+                                    <input type="submit" value="Редагувати" />
+                                </form>
+                                <form asp-page-handler="remove" method="post">
+                                    <input type="hidden" asp-for="Login" value="@item.Login" />
+                                    <input type="submit" value="Видалити користувача" />
+                                </form>
+                            }
+                        }
+                    }
+                break;
+            default:
+                ViewData[Defs.VIEWDATA_PAGENAME] = "Помилка";
+                <partial name="_Error" />
+                break;
+        }
+    }
+</main>

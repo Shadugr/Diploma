@@ -15,10 +15,11 @@
         public const string PAGE_MAINPAGE = "Mainpage";
         public const string PAGE_STATIC_INDEX = "Index";
         public const string PAGE_NEWSLIST = "Newslist";
-        public const int PAGE_NEWSLIST_COUNT = 9;
-        public const int PAGE_NEWSLIST_SIDEBARCOUNT = 3;
         public const string PAGE_NEWSPAGE = "Newspage";
         public static readonly string[] PAGE_STATIC_PAGES = { "Abiturient" };
+        //News count on page
+        public const int PAGE_NEWSLIST_COUNT = 9;
+        public const int PAGE_NEWSLIST_SIDEBARCOUNT = 3;
         //Page type of edit
         public const string TYPE_EDIT_ADD = "add";
         public const string TYPE_EDIT_EDIT = "edit";
@@ -44,10 +45,17 @@
         public const string FILE_MAINHASHTABLE = "MainPages.json";
         public const string FILE_STATICHASHTABLE = "StaticPages.json";
         public const string FILE_NEWSHASHTABLE = "NewsPages.json";
+        public const string FILE_USERSHASHTABLE = "Users.json";
         public const string FILE_IMGDIRECTORY = @"wwwroot/img";
         public const string FILE_IMGDIRECTORYSHORT = @"img";
         public const string FILE_FORMIMAGESDIRECTORY = "formimages";
         public const string FILE_NEWSIMAGESDIRECTORY = "newsimages";
+        //User info
+        public const string USER_ADMIN_ACCESS = "Admin";
+        public const string USER_MODERATOR_ACCESS = "Moderator";
+        //Session info
+        public const string SESSION_ACCESS = "Access";
+        public const string SESSION_LOGIN = "Login";
         #endregion
     }
 }

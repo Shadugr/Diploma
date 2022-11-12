@@ -31,9 +31,9 @@ namespace FMI_web.Pages
         public IActionResult? OnPostEdit()
         {
             if (string.IsNullOrEmpty(PageName) || string.IsNullOrEmpty(FullPageName))
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             if (!Hashtables.StaticPages.ContainsKey(FullPageName))
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             if (string.IsNullOrEmpty(PageContent))
             {
                 ErrorMessage = "Контент сторінки порожній!";

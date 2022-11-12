@@ -131,6 +131,14 @@ main button, #imageButton {
     left: 0;
     background-color: white;
 }
+.borderForm {
+    margin-top: 1%;
+    padding-top: 1%;
+    border-top: 1px solid gray;
+}
+.borderForm > input[type=submit] {
+    margin-bottom: 1%;
+}
 #errorMessage {
     display: block;
     color: red;

@@ -55,6 +55,21 @@ namespace FMI_web
         }
         public NewsPageClass() { }
     }
+    public class UsersClass
+    {
+        public string? Login { get; set; }
+        public string? Password { get; set; }
+        public string? Access { get; set; }
+
+        public UsersClass(string? login, string? password, string? access)
+        {
+            Login = login;
+            Password = password;
+            Access = access;
+        }
+        public UsersClass() { }
+    }
+
     public static class Hashtables
     {
         public static Dictionary<string, MainPageClass> MainPages { get; set; }
@@ -63,6 +78,8 @@ namespace FMI_web
             = StaticFileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_STATICHASHTABLE);
         public static List<NewsPageClass> NewsPages { get; set; }
             = NewsFileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_NEWSHASHTABLE);
+        public static List<UsersClass> Users { get; set; }
+            = UsersFileToHashtable(Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_USERSHASHTABLE);
 
         public static void HashtableToFile<T>(T table, string path)
         {
@@ -93,8 +110,10 @@ namespace FMI_web
             var file = new FileInfo(path);
             if (file.Length == 0)
             {
-                Dictionary<string, StaticPageClass> temp = new Dictionary<string, StaticPageClass>();
-                temp.Add(Defs.PAGE_STATIC_INDEX, new StaticPageClass("", ""));
+                Dictionary<string, StaticPageClass> temp = new()
+                {
+                    { Defs.PAGE_STATIC_INDEX, new StaticPageClass("", "") }
+                };
                 foreach (var item in Defs.PAGE_STATIC_PAGES)
                     temp.Add(item, new StaticPageClass("", ""));
                 HashtableToFile(temp, path);
@@ -111,6 +130,23 @@ namespace FMI_web
                 return new List<NewsPageClass>();
             return JsonConvert.DeserializeObject<List<NewsPageClass>>
                 (File.ReadAllText(path)) ?? new List<NewsPageClass>();
+        }
+        private static List<UsersClass> UsersFileToHashtable(string path)
+        {
+            if (!File.Exists(path))
+                File.Create(path);
+            var file = new FileInfo(path);
+            if (file.Length == 0)
+            {
+                List<UsersClass> temp = new()
+                {
+                    new("admin", "admin", Defs.USER_ADMIN_ACCESS)
+                };
+                HashtableToFile(temp, path);
+                return temp;
+            }
+            return JsonConvert.DeserializeObject<List<UsersClass>>
+                (File.ReadAllText(path)) ?? new List<UsersClass>();
         }
 
         public static string ConvertToLatin(string source)

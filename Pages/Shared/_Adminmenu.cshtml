@@ -1,40 +1,57 @@
 ﻿@model FMI_web.Pages.Shared._AdminmenuModel
 
-<menu>
-    @{
-        if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_NEWS)
-        {
-            <form method="post" action="/Newseditor">
-                <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_ADD" />
-                <input type="submit" value="Додати новину" />
-            </form>
-        }
-        if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_MAIN 
-        && Hashtables.MainPages.ContainsKey(ViewData[Defs.VIEWDATA_PAGEID].ToString()))
-        {
-            <form method="post" action="/Maineditor">
-                <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
-                <input type="hidden" name="@Defs.INPUT_FULLPAGENAME" value="@ViewData[Defs.VIEWDATA_PAGEID]" />
-                <input type="submit" value="Редагувати сторінку" />
-            </form>
-        }
-        else if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_STATIC
-        && Hashtables.StaticPages.ContainsKey(ViewData[Defs.VIEWDATA_PAGEID].ToString()))
-        {
-            <form method="post" action="/Staticeditor">
-                <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
-                <input type="hidden" name="@Defs.INPUT_FULLPAGENAME" value="@ViewData[Defs.VIEWDATA_PAGEID]" />
-                <input type="submit" value="Редагувати сторінку" />
-            </form>
-        }
-        else if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_NEWS
-        && ViewData[Defs.VIEWDATA_PAGEID].ToString() != Defs.PAGE_NEWSLIST)
-        {
-            <form method="post" action="/Newseditor">
-                <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
-                <input type="hidden" name="@Defs.INPUT_ID" value="@ViewData[Defs.VIEWDATA_PAGEID]" />
-                <input type="submit" value="Редагувати сторінку" />
-            </form>
-        }
+@{
+    if (Context.Session.GetString(Defs.SESSION_ACCESS) == Defs.USER_ADMIN_ACCESS 
+    || Context.Session.GetString(Defs.SESSION_ACCESS) == Defs.USER_MODERATOR_ACCESS)
+    {
+        <menu>
+            @{
+                if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_NEWS)
+                {
+                    <form method="post" action="/Newseditor">
+                        <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_ADD" />
+                        <input type="submit" value="Додати новину" />
+                    </form>
+                }
+                if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_MAIN
+                && Hashtables.MainPages.ContainsKey(ViewData[Defs.VIEWDATA_PAGEID].ToString()))
+                {
+                    <form method="post" action="/Maineditor">
+                        <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
+                        <input type="hidden" name="@Defs.INPUT_FULLPAGENAME" value="@ViewData[Defs.VIEWDATA_PAGEID]" />
+                        <input type="submit" value="Редагувати сторінку" />
+                    </form>
+                }
+                else if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_STATIC
+                && Hashtables.StaticPages.ContainsKey(ViewData[Defs.VIEWDATA_PAGEID].ToString()))
+                {
+                    <form method="post" action="/Staticeditor">
+                        <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
+                        <input type="hidden" name="@Defs.INPUT_FULLPAGENAME" value="@ViewData[Defs.VIEWDATA_PAGEID]" />
+                        <input type="submit" value="Редагувати сторінку" />
+                    </form>
+                }
+                else if (ViewData[Defs.VIEWDATA_PAGE].ToString() == Defs.CLASS_NEWS
+                && ViewData[Defs.VIEWDATA_PAGEID].ToString() != Defs.PAGE_NEWSLIST)
+                {
+                    <form method="post" action="/Newseditor">
+                        <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
+                        <input type="hidden" name="@Defs.INPUT_ID" value="@ViewData[Defs.VIEWDATA_PAGEID]" />
+                        <input type="submit" value="Редагувати сторінку" />
+                    </form>
+                }
+                if (Context.Session.GetString(Defs.SESSION_ACCESS) == Defs.USER_ADMIN_ACCESS)
+                {
+                    <form method="post" action="/Usereditor">
+                        <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_ADD" />
+                        <input type="submit" value="Додати користувача" />
+                    </form>
+                }
+                <form method="post" action="/Usereditor">
+                    <input type="hidden" name="@Defs.INPUT_TYPEOFEDIT" value="@Defs.TYPE_EDIT_EDIT" />
+                    <input type="submit" value="Редагувати користувачів" />
+                </form>
+            }
+        </menu>
     }
-</menu>
+}

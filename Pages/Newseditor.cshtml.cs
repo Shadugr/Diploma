@@ -35,7 +35,7 @@ namespace FMI_web.Pages
         public IActionResult? OnPostAdd()
         {
             if (string.IsNullOrEmpty(PageName) || PageLogo == null)
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             if (string.IsNullOrEmpty(PageContent))
             {
                 ErrorMessage = "Контент сторінки порожній!";
@@ -70,7 +70,7 @@ namespace FMI_web.Pages
         public IActionResult? OnPostEdit()
         {
             if (string.IsNullOrEmpty(PageName) || Id == null || Id < 0 || Id >= Hashtables.NewsPages.Count)
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             if (string.IsNullOrEmpty(PageContent))
             {
                 ErrorMessage = "Контент сторінки порожній!";
@@ -124,7 +124,7 @@ namespace FMI_web.Pages
         public IActionResult? OnPostRemove()
         {
             if (Id < 0 || Id >= Hashtables.NewsPages.Count || Id == null )
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             string uploadsFolder = _environment.WebRootPath + '/'
                         + Defs.FILE_IMGDIRECTORYSHORT + '/' + Defs.FILE_NEWSIMAGESDIRECTORY;
             string oldPath = uploadsFolder +
@@ -133,7 +133,7 @@ namespace FMI_web.Pages
             Hashtables.NewsPages.RemoveAt((int)Id);
             Hashtables.HashtableToFile(Hashtables.NewsPages,
                 Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_NEWSHASHTABLE);
-            return RedirectToPage("Index");
+            return RedirectToPage(Defs.PAGE_STATIC_INDEX);
         }
         public IActionResult OnPostUploader(IFormFile UploadImage)
         {

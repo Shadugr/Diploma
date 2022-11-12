@@ -39,7 +39,7 @@ namespace FMI_web.Pages
         public IActionResult? OnPostAdd()
         {
             if (string.IsNullOrEmpty(PageName) || string.IsNullOrEmpty(PageType) || string.IsNullOrEmpty(Parent))
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             string page = Hashtables.ConvertToLatin(PageName);
             string fullPage = Parent + "&" + page;
             if (Hashtables.MainPages.ContainsKey(fullPage))
@@ -77,21 +77,21 @@ namespace FMI_web.Pages
                     }
                     break;
                 default:
-                    return RedirectToPage("Index");
+                    return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             }
             Hashtables.MainPages.Add(fullPage, temp);
             Hashtables.HashtableToFile(Hashtables.MainPages,
                 Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
             if (PageType == Defs.TYPE_PAGE)
                 return Redirect($"Mainpage/{fullPage}");
-            return RedirectToPage("Index");
+            return RedirectToPage(Defs.PAGE_STATIC_INDEX);
         }
         public IActionResult? OnPostEdit()
         {
             if (string.IsNullOrEmpty(PageName) || string.IsNullOrEmpty(PageType) || string.IsNullOrEmpty(FullPageName))
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             if (!Hashtables.MainPages.ContainsKey(FullPageName))
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             string fullPage = FullPageName;
             string newFullPage = "";
             string[] tempString = fullPage.Split('&');
@@ -161,14 +161,14 @@ namespace FMI_web.Pages
                         }
                         break;
                     default:
-                        return RedirectToPage("Index");
+                        return RedirectToPage(Defs.PAGE_STATIC_INDEX);
                 }
                 Hashtables.MainPages.Add(newFullPage, temp);
                 Hashtables.HashtableToFile(Hashtables.MainPages,
                 Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
                 if (PageType == Defs.TYPE_PAGE)
                     return Redirect($"Mainpage/{newFullPage}");
-                return RedirectToPage("Index");
+                return RedirectToPage(Defs.PAGE_STATIC_INDEX);
             }
             Hashtables.MainPages[fullPage].Type = PageType;
             switch (PageType)
@@ -206,7 +206,7 @@ namespace FMI_web.Pages
                 Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
             if (PageType == Defs.TYPE_PAGE)
                 return Redirect($"Mainpage/{fullPage}");
-            return RedirectToPage("Index");
+            return RedirectToPage(Defs.PAGE_STATIC_INDEX);
         }
         public IActionResult? OnPostRemove()
         {
@@ -217,7 +217,7 @@ namespace FMI_web.Pages
             }
             Hashtables.HashtableToFile(Hashtables.MainPages,
                 Defs.FILE_HASHTABLESDIRECTORY + '/' + Defs.FILE_MAINHASHTABLE);
-            return RedirectToPage("Index");
+            return RedirectToPage(Defs.PAGE_STATIC_INDEX);
         }
         public IActionResult OnPostUploader(IFormFile UploadImage)
         {
